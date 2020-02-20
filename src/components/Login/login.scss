@@ -1,0 +1,290 @@
+/***************************/
+/* Project Name: HR Approva Login Screen
+/* Author: Mohamed Noohu
+****************************/
+@import '../../assets/stylesheets/mixins/mixins';
+#login-wrapper{
+    margin:50px auto;
+    width:80%;
+
+    @include respond-above(lg){
+        width:70%;
+    }
+
+    @include respond-below(md){
+        width:90%;
+    }
+
+    @include respond-below(sm){
+        width:95%;
+    }
+
+    .login-container{
+        @include flex();
+        width:100%;
+        @include border-radius(30px);
+        @include box-shadow(3px, 5px, 5px, rgba(0, 0, 0, .5));
+        background-color:#fff;
+
+        .login-title{
+            font:normal 36px/36px 'philosopherregular', 'Trebuchet MS', Arial, San-serif;
+            text-shadow:2px 2px 2px rgba(0, 0, 0, .5);
+            text-align:center;
+            padding-top:15px;
+            position:relative;
+            transition:all .5s;
+            letter-spacing:1px;
+            padding-bottom:30px;
+
+            @include respond-below(sm){
+                font-size:28px;
+            }
+
+            @include respond-below(xs){
+                font-size:24px;
+            }
+
+            span{
+                font:normal 40px/40px 'philosopherbold', 'Trebuchet MS', Arial, San-serif;
+                display:block;
+
+                @include respond-below(sm){
+                    font-size:32px;
+                }
+
+                @include respond-below(xs){
+                    font-size:28px;
+                }
+            }
+
+            &:after{
+                position:absolute;
+                content:'';
+                width:75px;
+                height:4px;
+                background-color:#fff;
+                @include box-shadow(2px, 2px, 4px, rgba(0, 0, 0, .5));
+                bottom:15px;
+                left:50%;
+                margin-left:-37px;
+            }
+        }
+        p{
+            text-align:left;
+            padding:20px 20px 50px;
+            letter-spacing:1px;
+        }
+        
+        .login-left{
+            flex:1;
+            background-color:#2f3b46;
+            color:#fff;
+            @include border-radius(30px 0 0 30px);
+            text-align:center;
+            padding:55px 20px 110px;
+            position:relative;
+
+            .mini-logo{
+                position:absolute;
+                bottom:30px;
+                left:50%;
+                margin-left:-39px;
+            }
+
+            @include respond-below(sm){
+                display:none;
+            }
+        }
+
+        .login-right{
+            flex:1;
+            background-color:#fff;
+            color:#333;
+            @include border-radius(0 30px 30px 0);
+            padding:30px 20px;
+            text-align:center;
+
+            @include respond-below(sm){
+                @include border-radius(30px);
+            }
+
+            .login-image{
+                width:150px;
+                margin:5px 10px;
+                transition:all .5s;
+
+                @include respond-below(lg){
+                    width:125px;
+                }
+
+                @include respond-below(md){
+                    width:100px;
+                }
+
+                @include respond-below(sm){
+                    width:125px;
+                }
+
+                @include respond-below(xs){
+                    width:75px;
+                }
+            }
+            .login-title{
+                &:after{
+                    background-color:#2f3b46;
+                    width:50px;
+                    margin-left:-25px;
+                }
+            }
+            p{
+                padding:20px 0;
+            }
+            .login-form{
+                max-width:70%;
+                margin:auto;
+
+                @include respond-below(md){
+                    max-width:85%;
+                }
+
+                @include respond-below(xs){
+                    max-width:90%;
+                }
+    
+                fieldset{
+                    border:0;
+                    position:relative;
+    
+                    *:focus{
+                        outline:0;
+                    }
+        
+                    .login-label{
+                        position:absolute;
+                        width:21px;
+                        height:22px;
+                        font-size:0;
+                        left:5px;
+                        top:17px;
+                        background:url('../../assets/images/login-icons.png') no-repeat 0 0;
+    
+                        @at-root{
+                            .required{
+                                .login-label{
+                                    &:after{
+                                        position:absolute;
+                                        content:'*';
+                                        color:#f00;
+                                        font-size:18px;
+                                        right:-4px;
+                                        top:-1px;
+                                        background:#fff;
+                                        @include border-radius(50%);
+                                        line-height:.5;
+                                    }
+                                }
+                            }
+                        }
+                        
+                        &.username{
+                            background-position:0 0;
+                        }
+                        &.password{
+                            background-position:0 -21px;
+                        }
+                        &.email{
+                            background-position:0 -84px;
+                        }
+                        &.company{
+                            background-position:0 -107px;
+                        }
+                        &.details{
+                            background-position:0 -133px;
+                        }
+                        &.phone{
+                            background-position:0 -157px;
+                        }
+                    }
+                    .login-control{
+                        border:0;
+                        border-bottom:solid 2px #d5d8da;
+                        font: normal 12px/18px 'poppinsregular', 'Trebuchet MS', Arial, San-serif;
+                        color:#333;
+                        padding:20px 10px 15px 40px;
+                        width:100%;
+    
+                        @at-root{
+                            textarea{
+                                &.login-control{
+                                    height:60px;
+                                }
+                            }
+                            .error{
+                                &.login-control{
+                                    border-bottom-color:#f00;
+                                }
+                            }
+                        }
+                    }
+                    .login-button{
+                        width:100%;
+                        background-color:#2f3b46;
+                        text-transform:uppercase;
+                        color:#fff;
+                        border:0;
+                        padding:12px;
+                        @include border-radius(30px);
+                        margin:30px 0;
+                    }
+                }
+            }
+            .login-link-container{
+                max-width:60%;
+                margin:auto;
+
+                @include respond-below(lg){
+                    max-width:70%;
+                }
+
+                @include respond-below(md){
+                    max-width:80%;
+                }
+
+                @include respond-below(sm){
+                    max-width:70%;
+                }
+
+                @include respond-below(xs){
+                    max-width:80%;
+                }
+
+                .login-link{
+                    float:left;
+                    position:relative;
+                    color:#333;
+                    padding-left:30px;
+                    
+                    &:before{
+                        position:absolute;
+                        content:'';
+                        width:21px;
+                        height:22px;
+                        background:url('../../assets/images/login-icons.png') no-repeat 0 0;
+                        top:-4px;
+                        left:0;
+                    }
+                    
+                    &.forgotPassword:before{
+                        background-position:0 -41px;
+                    }
+                    &.signUp:before{
+                        background-position:0 -63px;
+                    }
+                    &.signIn:before{
+                        background-position:0 -181px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+@mixin font-awesome(){
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    font-family: 'FontAwesome';
+    font-weight: 400;
+}
+
+.fa {
+    @include font-awesome();
+}
+.fa-spin {
+    animation: fa-spin 2s infinite linear;
+}
+
+.fa-pulse {
+    animation: fa-spin 1s infinite steps(8);
+}
+
+.fa-lg {
+    font-size: (4em / 3);
+    line-height: (3em / 4);
+    vertical-align: -.0667em;
+}
+
+.fa-xs {
+    font-size: .75em;
+}
+
+.fa-sm {
+    font-size: .875em;
+}
+
+@keyframes fa-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@for $i from 1 through 10 {
+    .fa-#{$i}x {
+        font-size: $i * 1em;
+    }
+}

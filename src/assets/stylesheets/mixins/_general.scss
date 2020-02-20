@@ -1,0 +1,66 @@
+//== CleanFix
+
+@mixin clearFix(){
+    clear:both;
+    display:table;
+    zoom:1;
+    &:before, &:after{
+        visibility:hidden;
+        overflow:hidden;
+        display:block;
+        font-size:0;
+        content:'\0020';
+        clear:both;
+        height:0;
+    }
+}
+
+//== flex
+
+@mixin flex(){
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+//== Border Radius
+@mixin border-radius($radius) {
+	border-radius: $radius;
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+}
+
+//== Box Shadow
+
+@mixin box-shadow($left, $top, $radius, $color) {
+	box-shadow: $left $top $radius $color;
+	-webkit-box-shadow: $left $top $radius $color;
+	-moz-box-shadow: $left $top $radius $color;
+}
+
+//== sr-only
+
+@mixin sr-only {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    @include sr-only-focusable();
+}
+
+@mixin sr-only-focusable {
+    &:active, &:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+}

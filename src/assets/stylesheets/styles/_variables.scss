@@ -1,0 +1,67 @@
+// Color
+
+$white:     #fff !default;
+$white-700:  rgba(255, 255, 255, .7) !default;
+$dark-red:  #dd2036 !default;
+$black:     #000 !default;
+$gray:      #333 !default;
+$heading-color: #293845 !default;
+
+
+$primary:          #007bff !default;
+$primary-hover:    #0069d9 !default;
+$secondary:       #6c757d !default;
+$secondary-hover: #5a6268 !default;
+
+
+$navigation-bg:         #293845 !default;
+$sub-navigation-bg:    #1d2934 !default;
+$nav-link-color:        #8099ad !default;
+$sub-nav-link-color:    #94aabd !default;
+
+
+$fa-css-prefix:        fa !default;
+
+$widget-bg:           #f7f7f7 !default;
+$widget-border:       solid 1px #f4e2e2 !default;
+
+
+
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-grid-classes:                         true !default;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+) !default;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+// @include _assert-ascending($container-max-widths, "$container-max-widths");
+
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns:                12 !default;
+$grid-gutter-width:           30px !default;
+$grid-row-columns:            6 !default;
+
+
+// Container padding
+
+$container-padding-x: $grid-gutter-width / 2 !default;
+

@@ -1,0 +1,55 @@
+@import '../../../assets/stylesheets/styles/variables';
+header{
+    float:left;
+    background-color:$white-700;
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:10;
+    .logo{
+        float:left;
+        padding:7px 10px 3px;
+        transition:all .5s;
+        img{
+            max-height:28px;
+            transition:all .5s;
+        }
+    }
+    .header-right{
+        float:right;
+        .header-date{
+            display:inline-block;
+            padding-right:15px;
+            vertical-align:-3px;
+        }
+        .header-alert{
+            border-radius:0;
+            background-color:$dark-red;
+            color:$white;
+            position:relative;
+            padding:.575rem 1rem;
+            &:focus{
+                box-shadow:none;
+            }
+            .header-alert-icon{
+                position:absolute;
+                font-size:10px;
+                top:7px;
+                left:5px;
+                transform:rotate(-20deg);
+            }
+        }
+    }
+    @at-root{
+        .nav-close{
+            .logo{
+                max-width:60px;
+                overflow:hidden;
+                padding:11px 6px 3px;
+                img{
+                    max-height:21px;
+                }
+            }
+        }
+    }
+}

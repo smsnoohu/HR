@@ -1,0 +1,163 @@
+@import '../../../assets/stylesheets/styles/variables';
+@import '../../../assets/stylesheets/mixins/mixins';
+#left-nav{
+    width:250px;
+    background-color:$navigation-bg;
+    top:0;
+    bottom:0;
+    color:$white;
+    padding-top:45px;
+    min-height:100vh;
+    box-sizing: border-box;
+    position:relative;
+    .toggle-nav{
+        position:absolute;
+        background-color:$primary;
+        right:-31px;
+        z-index:1;
+        &:before{
+            @include font-awesome();
+            content:'\f053';
+            padding:10px 12px;
+            color:#fff;
+            transition:all .5s;
+        }
+    }
+    .nav-profile{
+        margin:10px;
+        padding:0 5px 10px;
+        border-bottom:solid 1px #949ca2;
+        transition:all .5s;
+        .user-img{
+            padding:20px 0 10px;
+            text-align:center;
+            transition:all .5s;
+            img{
+                max-width:60px;
+                @include border-radius(50%);
+                border:solid 1px #949ca2;
+                padding:3px;
+                transition:all .5s;
+            }
+        }
+        .user-profile-details{
+            position:relative;
+            transition:all .5s;
+        }
+        .nav-profile-link{
+            color:$white;
+            font-size:15px;
+            margin:10px 20px 0 0;
+            display:inline-block;
+            .fa{
+                margin-right:5px;
+            }
+        }
+    }
+    .left-nav{
+        li{
+            list-style:none;
+            a{
+                position:relative;
+                color:$nav-link-color;
+                text-decoration:none;
+                padding:5px 20px 5px 30px;
+                display:block;
+                margin:0 10px;
+                transition:all .5s;
+                &:before, &:after{
+                    @include font-awesome();
+                    position:absolute;
+                    top:8px;
+                    left:8px;
+                    transition:all .5s;
+                }
+                &:after{
+                    left:auto;
+                    right:8px;
+                    content:'\f054';
+                    width:100%;
+                    text-align:right;
+                    background-color:rgba(41, 56, 69, .0000001);
+                    transition:all .5s;
+                }
+            }
+            &.open-sub-menu a:after{
+                content:'\f078';
+            }
+            .sub-nav{
+                background-color:$sub-navigation-bg;
+                font-size:90%;
+                padding:10px;
+                transition:all .5s;
+                a{
+                    margin:0;
+                    color:$sub-nav-link-color;
+                    transition:all .5s;
+                    &:after{
+                        content:'\f061';
+                        right:20px;
+                        transition:all .5s;
+                    }
+                }
+            }
+        }
+    }
+}
+.nav-close{
+    #left-nav{
+        width:60px;
+        *{
+            white-space:nowrap;
+        }
+        .toggle-nav{
+            &:before{
+                transform:rotate(180deg);
+            }
+            &:after{
+                position:fixed;
+                content:'';
+                width:60px;
+                left:0;
+                top:0;
+                bottom:0;
+                background-color:rgba(41, 56, 69, .0000001);
+            }
+        }
+        .nav-profile{
+            padding:0 0 10px;
+            .user-img{
+                padding:0;
+                img{
+                    max-width:32px;
+                }
+            }
+        }
+        .user-profile-details{
+            left:100px;
+            height:0;
+        }
+        .left-nav{
+            > li{
+                > a{
+                    transition:all .5s;
+                    span{
+                        text-indent:100px;
+                        display:inline-block;
+                    }
+                    &:before{
+                        left:12px;
+                    }
+                    &:after{
+                        display:none;
+                    }
+                }
+                .sub-nav{
+                    height:0;
+                    padding:0;
+                    overflow:hidden;
+                }
+            }
+        }
+    }
+}
