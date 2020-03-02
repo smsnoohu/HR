@@ -9,17 +9,12 @@ const LeaveRequest = props => {
 
     const { userObject } = useContext(AuthContext);
 
-    const { startDate, endDate, reportDate, contactInVacation, mobileNoInVacation, emailInVacation } = LEAVE_REQUEST;
-
-    console.log('LEAVE_REQUEST: ', LEAVE_REQUEST);
-
     const [ inpValue, setInpValue ] = useState(LEAVE_REQUEST);
 
-    console.log('inpValue: ', inpValue);
+    const { startDate, endDate, reportDate, contactInVacation, mobileNoInVacation, emailInVacation } = inpValue;
 
     const handleChange = e => {
         const { name, type, checked, value } = e.target;
-        console.log(name, value);
         const newState = {
             ...inpValue,
             [name]: value
@@ -28,9 +23,22 @@ const LeaveRequest = props => {
         setInpValue(newState);
     }
 
-    useEffect(() => {
-        setInpValue(LEAVE_REQUEST);
-    }, []);
+    const updateDate = (startDate, date) => {
+        // const { name, type, checked, value } = e.target;
+        console.log('date: ', startDate, date);
+        const newState = {
+            ...inpValue,
+            startDate: date
+        }
+
+        setInpValue(newState);
+
+        console.log('newState: ', newState);
+    }
+
+    // useEffect(() => {
+    //     setInpValue(LEAVE_REQUEST);
+    // }, []);
 
     return(
         <>
@@ -68,7 +76,7 @@ const LeaveRequest = props => {
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-4">
                         <label className="label-block">Starting date</label>
-                        <Datepicker id="stateDate" name="startDate" value={startDate} handleChange={handleChange} />
+                        <Datepicker id="stateDate" name="startDate" value={startDate} handleChange={(startDate) => updateDate(startDate)} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-4">
                         <label className="label-block">Ending date</label>
