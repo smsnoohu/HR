@@ -1,11 +1,18 @@
-import React, { useState, useContext, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = props => {
     const [userObject, setUserObject] = useState({
-        userID: '',
-        password: ''
+        userID: 'u123456',
+        EmployeeName: 'Mohamed Noohu',
+        hiringDate: '02/11/2017',
+        jobTitle: 'Business Executive',
+        shiftGroup: 'General',
+        costCenter: 'Test',
+        dept: 'HR Admin',
+        password: '',
+        role: 'level1'
     });
 
     const [isAunthetic, setIsAunthetic] = useState(false);

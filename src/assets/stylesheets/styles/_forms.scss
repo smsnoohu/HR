@@ -1,0 +1,63 @@
+.form-container{
+    padding:15px;
+    clear:both;
+    .row{
+        align-items:baseline;
+    }
+}
+.label{
+    @include label();
+    &-block{
+        @include label();
+        display:block;
+    }
+}
+.required{
+    .label{
+        &:after{
+            content:'\2605';
+            color:$danger;
+            margin-left:5px;
+            font-size:70%;
+            vertical-align:5px;
+        }
+    }
+}
+.form-control{
+    @include form-control();
+    &-inline{
+        @include form-control();
+        margin:0 10px;
+        width:auto;
+    }
+    &-xs{
+        @include form-control();
+        max-width:70px;
+    }
+    @at-root{
+        select#{&}{
+            @include select();
+            &-inline{
+                @include select();
+                margin:0 10px;
+                width:auto;
+            }
+        }
+        textarea#{&}{
+            height:100px;
+        }
+    }
+}
+.check{
+    @include customRadioCheck();
+}
+.radio{
+    @include customRadioCheck();
+    input{
+        & + label{
+            &:before, &:after{
+                @include border-radius(50%);
+            }
+        }
+    }
+}

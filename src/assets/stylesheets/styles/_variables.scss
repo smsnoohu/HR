@@ -1,17 +1,22 @@
 // Color
 
 $white:     #fff !default;
+$white-500:  rgba(255, 255, 255, .5) !default;
 $white-700:  rgba(255, 255, 255, .7) !default;
 $dark-red:  #dd2036 !default;
 $black:     #000 !default;
 $gray:      #333 !default;
+$gray-400:      #ced4da !default;
 $heading-color: #293845 !default;
+$link-color:    #3d7e9a !default;
+$card-bg:       #f4f4f4 !default;
 
 
 $primary:          #007bff !default;
 $primary-hover:    #0069d9 !default;
 $secondary:       #6c757d !default;
 $secondary-hover: #5a6268 !default;
+$danger:          #f00 !default;
 
 
 $navigation-bg:         #293845 !default;
@@ -24,6 +29,33 @@ $fa-css-prefix:        fa !default;
 
 $widget-bg:           #f7f7f7 !default;
 $widget-border:       solid 1px #f4e2e2 !default;
+
+$border-color-1:   #e7e7e7 !default;
+$news-dot:            #8ca6bc !default;
+
+$btn-tab-color-1:     #7068b6 !default;
+$btn-tab-color-2:     #cf5e76 !default;
+$btn-tab-color-3:     #5ca4f0 !default;
+$btn-tab-color-4:     #95cf4a !default;
+
+$table-header-bg:     #293845 !default;
+
+$odd-bg:         #f1f1f1 !default;
+$even-bg:        #e7e7e7 !default;
+
+$footer-bg:         $navigation-bg !default;
+
+$input-disabled-opacity:    .65 !default;
+$input-disabled-bg:         rgb(230, 229, 229);
+
+$modal-backdrop-opacity:    .5 !default;
+$modal-backdrop-zindex:     1040 !default;
+$modal-zindex:              1050 !default;
+
+$modal-xl:    1140px !default;
+$modal-lg:    800px !default;
+$modal-md:    500px !default;
+$modal-sm:    300px !default;
 
 
 

@@ -1,0 +1,27 @@
+@import '../../../../assets/stylesheets/styles/variables';
+@import '../../../../assets/stylesheets/mixins/general';
+.myteam-list{
+    list-style:none;
+    margin:0 -15px;
+    max-height:222px;
+    overflow:auto;
+    li{
+        position:relative;
+        padding:10px 10px 10px 60px;
+        background-color:$even-bg;
+        img{
+            position:absolute;
+            max-width:35px;
+            padding:3px;
+            border:solid 1px $border-color-1;
+            @include border-radius(50%);
+            left:15px;
+        }
+        &:nth-child(odd){
+            background-color:$odd-bg;
+        }
+        a{
+            color:$gray;
+        }
+    }
+}

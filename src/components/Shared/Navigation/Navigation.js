@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './navigation.scss';
 import { EventContext } from '../../../context/EventContextProvider';
 
@@ -24,13 +24,15 @@ const Navigation = () => {
                     <Link to="#" className="fa-th" data-target="nav-dashboard" onClick={e => toggleComponent(e)}><span>Dashboard</span></Link>
                     { clicked['nav-dashboard'] &&
                         <ul className="sub-nav">
-                            <li><Link to="#">Sub Nav 1</Link></li>
+                            <li><NavLink to="/">Sub Nav 1</NavLink></li>
                             <li><Link to="#">Sub Nav 2</Link></li>
                             <li><Link to="#">Sub Nav 3</Link></li>
                             <li><Link to="#">Sub Nav 4</Link></li>
                         </ul>
                     }
                 </li>
+                <li><NavLink to="/Framework" className="fa-laptop-code"><span>Framework</span></NavLink></li>
+                <li><NavLink to="/LeaveRequest" className="fa-plane-departure"><span>Leave Request</span></NavLink></li>
             </ul>
         </aside>
     );

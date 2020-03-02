@@ -36,33 +36,48 @@ body{
 .error-text{
     color:#f00;
 }
+a{
+    color:$link-color;
+}
+h1, h2, h3, h4, h5, h6{
+    font-family:'philosopherregular';
+    font-weight:100;
+}
+.thumb{
+    max-width:75px;
+    padding:3px;
+    border:solid 1px #f0f0f0;
+    &-round{
+        @include border-radius(50%);
+    }
+    &-xs{
+        max-width:40px;
+    }
+}
 #wrapper{
     #container{
         @include flex();
         padding:0;
         .middle-container{
-            background-color:#ccc;
+            background-color:$white;
             flex:1;
             position:relative;
             margin-top:45px;
-            padding:20px;
-        }
-        .widget-container{
-            background-color:$widget-bg;
-            border:$widget-border;
-            @include border-radius(5px);
-            padding:15px;
-            h2{
-                font-family:philosopherregular;
-                color:$heading-color;
-                padding-bottom:10px;
-                .fa{
-                    vertical-align:-1px;
-                    padding-right:5px;
+            padding:20px 20px 70px;
+            .card{
+                background-color:$card-bg;
+                padding:10px 10px 0;
+                border:solid 1px $border-color-1;
+                @include border-radius(5px);
+                p{
+                    padding-bottom:10px;
                 }
             }
-            video{
-                width:100%;
+            .request-container{
+                padding:20px 0;
+                [class*="col-"]{
+                    padding-bottom:15px;
+                }
             }
         }
     }

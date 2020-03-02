@@ -1,0 +1,128 @@
+//== Label Style
+@mixin label(){
+    display:inline-block;
+    font-size:.8rem;
+    margin-bottom:.5rem;
+    line-height:1.5;
+    vertical-align:-4px;
+    color:$gray;
+    padding-top:.2em;
+    white-space:normal;
+    text-align:left;
+    font-weight:600;
+}
+
+//== Form Input Style
+@mixin form-control(){
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    max-wdith:100%;
+    height: 2.25rem;
+    padding: 0.375rem 0.75rem;
+    font-size: .9rem;
+    line-height: 1.5;
+    vertical-align:middle;
+    color:$gray;
+    background-color:$white;
+    background-clip: padding-box;
+    border: 1px solid $gray-400;
+    border-radius: 0.15rem;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    &:focus{
+        background-color:$white;
+        border-color:$primary-hover;
+        outline:0;
+        -webkit-box-shadow:0 0 0 0.2rem rgba(0, 123, 123, .25);
+        box-shadow:0 0 0 0.2rem rgba(0, 123, 123, .25);
+    }
+    &:disabled{
+        @include inputDisabled();
+    }
+}
+
+@mixin inputDisabled(){
+    opacity:$input-disabled-opacity;
+    background-color:$input-disabled-bg;
+}
+
+@mixin select(){
+    padding-right:1.75rem;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-size: .6em;
+    background-position: calc(100% - 1.3em) center;
+    background-repeat: no-repeat;
+
+    &::-ms-expand{
+        display:none;
+    }
+
+    &:disabled{
+        @include inputDisabled();
+    }
+}
+
+@mixin customRadioCheck(){
+    position:relative;
+    display:-ms-inline-flexbox;
+    display:inline-flex;
+    -ms-flex-align: center;
+    align-items:center;
+    padding-left:0;
+    margin:10px .75rem 0 0;
+    input{
+        position:absolute;
+        z-index:-1;
+        opacity:0;
+        & + label{
+            padding:0 0 0 30px;
+            cursor:pointer;
+            font-weight:600;
+            min-height:20px;
+            &:before{
+                @include border-radius(2px);
+                position:absolute;
+                content:'';
+                top:0;
+                left:0;
+                height:20px;
+                width:20px;
+                border:solid 1px $gray;
+                background-color:$white;
+            }
+        }
+        @at-root{
+            &:checked{
+                & + label{
+                    &:after{
+                        position:absolute;
+                        content:'';
+                        top:4px;
+                        left:4px;
+                        width:12px;
+                        height:12px;
+                        background-color:$gray;
+                    }
+                }
+            }
+            &:checked:not([type="radio"]){
+                & + label{
+                    &:after{
+                        top:6px;
+                        height:6px;
+                        background-color:$white;
+                        border-left:solid 2px $gray;
+                        border-bottom:solid 2px $gray;
+                        transform:rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+}
