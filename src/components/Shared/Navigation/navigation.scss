@@ -6,17 +6,27 @@
     top:0;
     bottom:0;
     color:$white;
-    padding-top:45px;
+    padding:45px 0 150px;
     min-height:100vh;
     box-sizing: border-box;
     position:relative;
+    &:after{
+        position:absolute;
+        content:'';
+        left:50%;
+        margin-left:-70px;
+        bottom:40px;
+        width:141px;
+        height:96px;
+        background:url('../../../assets/images/hrapprova-white-footer.png') no-repeat;
+    }
     .toggle-nav{
         position:absolute;
         background-color:$primary;
         right:-31px;
         z-index:1;
         &:before{
-            @include font-awesome();
+            @include fa();
             content:'\f053';
             padding:10px 12px;
             color:#fff;
@@ -61,14 +71,14 @@
                 position:relative;
                 color:$nav-link-color;
                 text-decoration:none;
-                padding:5px 20px 5px 30px;
+                padding:10px 20px 10px 30px;
                 display:block;
                 margin:0 10px;
                 transition:all .5s;
                 &:before, &:after{
-                    @include font-awesome();
+                    @include fa();
                     position:absolute;
-                    top:8px;
+                    top:13px;
                     left:8px;
                     transition:all .5s;
                 }
@@ -107,6 +117,13 @@
 .nav-close{
     #left-nav{
         width:60px;
+        &:after{
+            margin-left:-19px;
+            width:35px;
+            height:32px;
+            background-size:70px;
+            background-position:-17px 0;
+        }
         *{
             white-space:nowrap;
         }

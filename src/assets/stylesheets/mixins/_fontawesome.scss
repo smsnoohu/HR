@@ -1,4 +1,4 @@
-@mixin font-awesome(){
+@mixin fa(){
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: inline-block;
@@ -11,7 +11,7 @@
 }
 
 .fa {
-    @include font-awesome();
+    @include fa();
 }
 .fa-spin {
     animation: fa-spin 2s infinite linear;

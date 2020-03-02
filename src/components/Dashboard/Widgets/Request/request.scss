@@ -1,0 +1,93 @@
+@import '../../../../assets/stylesheets/styles/variables';
+@import '../../../../assets/stylesheets/mixins/general';
+@import '../../../../assets/stylesheets/mixins/fontawesome';
+.dashboard-tab{
+    .row{
+        padding-bottom:20px;
+        > div{
+            display:flex;
+            .btn-tab{
+                width:100%;
+                text-align:center;
+                font-family:'philosopherregular';
+                position:relative;
+                color:$white;
+                @include border-radius(5px);
+                padding:15px 30px;
+                line-height:1.2;
+                font-size:.8rem;
+                &:before{
+                    position:absolute;
+                    @include fa();
+                    font-size:1.3rem;
+                    color:$white-500;
+                    left:5px;
+                    top:50%;
+                    margin-top:-10px;
+                }
+                &:after{
+                    position:absolute;
+                    content:'';
+                    border-top:solid 10px transparent;
+                    border-left:solid 10px transparent;
+                    border-right:solid 10px transparent;
+                    left:50%;
+                    margin-left:-10px;
+                    bottom:-10px;
+                }
+                &.-request{
+                    background-color:$btn-tab-color-1;
+                    &:before{
+                        content:'\f044';
+                    }
+                    @at-root{
+                        &.active{
+                            &:after{
+                                border-top-color:$btn-tab-color-1;
+                            }
+                        }
+                    }
+                }
+                &.-pending{
+                    background-color:$btn-tab-color-2;
+                    &:before{
+                        content:'\f252';
+                    }
+                    @at-root{
+                        &.active{
+                            &:after{
+                                border-top-color:$btn-tab-color-2;
+                            }
+                        }
+                    }
+                }
+                &.-action{
+                    background-color:$btn-tab-color-3;
+                    &:before{
+                        content:'\f06a';
+                    }
+                    @at-root{
+                        &.active{
+                            &:after{
+                                border-top-color:$btn-tab-color-3;
+                            }
+                        }
+                    }
+                }
+                &.-involve{
+                    background-color:$btn-tab-color-4;
+                    &:before{
+                        content:'\f328';
+                    }
+                    @at-root{
+                        &.active{
+                            &:after{
+                                border-top-color:$btn-tab-color-4;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

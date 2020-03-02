@@ -1,0 +1,17 @@
+@import '../../../assets/stylesheets/styles/variables';
+footer{
+    background-color:$footer-bg;
+    width:100%;
+    padding:15px;
+    color:$white;
+    margin:0 -20px;
+    position:absolute;
+    bottom:0;
+    p{
+        width:50%;
+        display:inline-block;
+        &:last-child{
+            text-align:right;
+        }
+    }
+}
