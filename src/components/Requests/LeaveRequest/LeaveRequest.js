@@ -9,8 +9,6 @@ const LeaveRequest = props => {
 
     const { userObject } = useContext(AuthContext);
 
-    // const [leaveRequest, setLeaveRequest] = useState(LEAVE_REQUEST);
-
     const { startDate, endDate, reportDate, contactInVacation, mobileNoInVacation, emailInVacation } = LEAVE_REQUEST;
 
     console.log('LEAVE_REQUEST: ', LEAVE_REQUEST);
