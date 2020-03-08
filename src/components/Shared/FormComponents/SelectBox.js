@@ -1,11 +1,11 @@
 import React from 'react';
-const SelectBox = ({ id, className, name, value, handleChange, disabled, placeholder, options}) =>{
+const SelectBox = ({ id, className, name, value, handleChange, disabled, placeholder, options, inline}) =>{
     
     const optionsArray = (options && options.length !== 0) ? options : [];
 
     return(
         <select
-            className={`form-control${className ? ' ' + className : ''}`}
+            className={`form-control${className ? ' ' + className : inline ? ' form-control-inline' : ''}`}
             name={name}
             id={id}
             onChange={handleChange}

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-const Datepicker = ({ className, name, id, value, isClear, inline, maxDate, handleChange }) => {
+import './datepicker.scss';
+const Datepicker = ({ className, name, id, value, inline, maxDate, handleChange }) => {
     const [pickDate, setPickDate] = useState(null);
     const setDate = date => setPickDate(date);
     return(
