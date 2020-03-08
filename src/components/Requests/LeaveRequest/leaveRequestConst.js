@@ -1,7 +1,7 @@
 export const LEAVE_REQUEST = {
-    startDate: '2/1/2020',
-    endDate: '3/3/2020',
-    reportDate: '3/4/2020',
+    startDate: '02/01/2020',
+    endDate: '03/03/2020',
+    reportDate: '03/04/2020',
     contactInVacation: 'Mohamed Noohu',
     mobileNoInVacation: '9942305949',
     emailInVacation: 'mohamed.noohu@gmail.com',
@@ -63,15 +63,30 @@ export const EMPLOYEE_DETAILS = {
         familyLocation: 'In KSA'
     }],
 
-    spouse: [{
-        name: 'Shaik Nuzla',
-        age: 30,
-        gender: 'Female',
-        fromDate: '02/02/2020',
-        toDate: '03/02/2020',
-        ticketClass: 'One Way',
-        fromRoute: 'CA',
-        toRoute: 'MAA',
-        familyLocation: 'In KSA'
-    }]
+    depedent: [
+        {
+            name: 'Shaik Nuzla',
+            relationToEmployee: 'Spouse',
+            age: 30,
+            gender: 'Female',
+            fromDate: '02/02/2020',
+            toDate: '03/02/2020',
+            ticketClass: 'One Way',
+            fromRoute: 'CA',
+            toRoute: 'MAA',
+            familyLocation: 'In KSA'
+        },
+        {
+            name: 'Syed',
+            relationToEmployee: 'Child',
+            age: 12,
+            gender: 'Male',
+            fromDate: '02/02/2020',
+            toDate: '03/02/2020',
+            ticketClass: 'One Way',
+            fromRoute: 'CA',
+            toRoute: 'MAA',
+            familyLocation: 'In KSA'
+        }
+    ]
 };
