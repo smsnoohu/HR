@@ -40,6 +40,9 @@
     .icon-sufix{
         padding-left:10px;
     }
+    + .btn{
+        margin-left:10px;
+    }
     &.btn-primary{
         color:$white;
         background-color:$primary;
@@ -81,6 +84,11 @@
             background-color:$secondary;
             border-color:$secondary;
         }
+    }
+}
+table{
+    .btn{
+        padding:0.295rem 0.75rem;
     }
 }
 .btn-container{
