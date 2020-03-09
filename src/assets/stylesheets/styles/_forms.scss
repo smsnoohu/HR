@@ -49,6 +49,11 @@
         }
     }
 }
+table{
+    .form-control{
+        height:2rem;
+    }
+}
 .check{
     @include customRadioCheck();
 }
