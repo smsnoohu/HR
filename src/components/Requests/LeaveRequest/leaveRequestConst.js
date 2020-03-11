@@ -9,11 +9,11 @@ export const LEAVE_REQUEST = {
         id: 1,
         desc: 'Annual Leave'
     }],
-    ticketStatus: ''
+    ticketStatus: 'Company'
 };
 
-export const LEAVE_STATUS = {
-    status: 'requester'
+export const ROLES = {
+    role: 'new'
 };
 
 export const LEAVE_TYPE = [
@@ -109,7 +109,7 @@ export const EMPLOYEE_DETAILS = {
             gender: 'Male',
             fromDate: '02/03/2020',
             toDate: '03/02/2020',
-            ticketClass: 'One Way',
+            ticketClass: 'Round Trip',
             fromRoute: 'SFO',
             toRoute: 'MAA',
             location: 'In KSA'
@@ -120,7 +120,7 @@ export const EMPLOYEE_DETAILS = {
 export const ACTION_DETAILS = [
     {
         actionNo: 1,
-        requestedBy: 'Noohu',
+        createdBy: 'Noohu',
         actionName: 'VR',
         deptName: 'IMM',
         respBy: 'Syed',
