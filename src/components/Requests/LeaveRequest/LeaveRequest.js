@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContextProvider';
 import Datepicker from '../../Shared/FormComponents/DatePicker/Datepicker';
-import DateRange from '../../Shared/FormComponents/DatePicker/DateRange';
 import { DateFormetter } from '../../../utils/DateFormetter';
 import TextBox from '../../Shared/FormComponents/TextBox';
 import SelectBox from '../../Shared/FormComponents/SelectBox';

@@ -12,7 +12,9 @@ const AuthContextProvider = props => {
         costCenter: 'Test',
         dept: 'HR Admin',
         password: '',
-        role: 'level1'
+        role: 'level1',
+        PrimaryContactNo: '9876543210',
+        typeOfWork: 'Contractor'
     });
 
     const [isAunthetic, setIsAunthetic] = useState(false);

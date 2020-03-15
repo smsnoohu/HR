@@ -4,6 +4,7 @@ import Dashboard from './Dashboard/Dashboard';
 import NewsUpdates from './NewsUpdates/NewsUpdates';
 import Framework from './Framework/Framework';
 import LeaveRequest from './Requests/LeaveRequest/LeaveRequest';
+import Clearance from './Clearance/Clearance';
 
 const ContainerNav = () => {
     return(
@@ -12,6 +13,7 @@ const ContainerNav = () => {
             <Route path="/NewsUpdates" component={NewsUpdates} />
             <Route path="/Framework" component={Framework} />
             <Route path="/LeaveRequest" component={LeaveRequest} />
+            <Route path="/Clearance" component={Clearance} />
         </Switch>
     );
 }
