@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import Checkbox from '../../../Shared/FormComponents/CheckBox';
 import TextBox from '../../../Shared/FormComponents/TextBox';
 import TextArea from '../../../Shared/FormComponents/TextArea';
-import RadioButton from '../../../Shared/FormComponents/RadioButton';
 import Button from '../../../Shared/FormComponents/Button';
+import RadioButton from '../../../Shared/FormComponents/RadioButton';
 import { CLEARANCE_FIELD } from '../../ClearanceConst';
 
-const Employee = ({ clearanceValue, updateClearance, approve, updateApprove }) => {
+const Health = ({ clearanceValue, updateClearance, approve, updateApprove }) => {
 
-    const [othersValue, setOthersValue] = useState(CLEARANCE_FIELD.empOthers);
+    const [othersValue, setOthersValue] = useState(CLEARANCE_FIELD.healthOthers);
     const [otherText, setOtherText] = useState({});
+
     const updateOtherVal = e => {
         const { name, value } = e.target;
         console.log('name, value:', name, value);
@@ -51,16 +52,22 @@ const Employee = ({ clearanceValue, updateClearance, approve, updateApprove }) =
 
     return(
         <>
-            <h2>Employee Department</h2>
+            <h2>Health & Safety Department</h2>
             <div className="row">
                 <div className="col-12 col-md-6 col-lg-4">
-                    <Checkbox id="isBook" name="isBook" value={clearanceValue.isBook} label="Books / Drawings / Documents" handleChange={updateClearance} checked={clearanceValue.isBook === 'Yes' ? true : false} />
+                    <Checkbox id="isPPE" name="isPPE" value={clearanceValue.isPPE} label="PPE" handleChange={updateClearance} checked={clearanceValue.isPPE === 'Yes' ? true : false} />
                 </div>
                 <div className="col-12 col-md-6 col-lg-4">
-                    <Checkbox id="isKeys" name="isKeys" value={clearanceValue.isKeys} label="Keys" handleChange={updateClearance} checked={clearanceValue.isKeys === 'Yes' ? true : false} />
+                    <Checkbox id="isPlans" name="isPlans" value={clearanceValue.isPlans} label="Plans/Drawings/Manuals" handleChange={updateClearance} checked={clearanceValue.isPlans === 'Yes' ? true : false} />
                 </div>
                 <div className="col-12 col-md-6 col-lg-4">
-                    <Checkbox id="isTools" name="isTools" value={clearanceValue.isTools} label="Tools" handleChange={updateClearance} checked={clearanceValue.isTools === 'Yes' ? true : false} />
+                    <Checkbox id="isSafetyEquip" name="isSafetyEquip" value={clearanceValue.isSafetyEquip} label="Safety/Fire Equipment" handleChange={updateClearance} checked={clearanceValue.isSafetyEquip === 'Yes' ? true : false} />
+                </div>
+                <div className="col-12 col-md-6 col-lg-4">
+                    <Checkbox id="isTesting" name="isTesting" value={clearanceValue.isTesting} label="Testing & Measuring Equipment" handleChange={updateClearance} checked={clearanceValue.isTesting === 'Yes' ? true : false} />
+                </div>
+                <div className="col-12 col-md-6 col-lg-4">
+                    <Checkbox id="isHealthTools" name="isHealthTools" value={clearanceValue.isHealthTools} label="Tools" handleChange={updateClearance} checked={clearanceValue.isHealthTools === 'Yes' ? true : false} />
                 </div>
                 { othersValue.length > 0 && 
                     <>
@@ -77,36 +84,36 @@ const Employee = ({ clearanceValue, updateClearance, approve, updateApprove }) =
             <div className="row pt-20">
                 <div className="col-12 col-md-6 col-lg-4">
                     <div className="input-group">
-                        <TextBox id="empOtherText" name="otherText" value={otherText.otherText || ''} placeholder="Enter other type" handleChange={updateOtherVal} />
-                        <Button className="secondary" icon="plus" iconPlace="prefix" value="Add Other" disabled={!otherText.otherText} handleClick={(e) => addOther(e, 'empOthers')} />
+                        <TextBox id="healthOtherText" name="otherText" value={otherText.otherText || ''} placeholder="Enter other type" handleChange={updateOtherVal} />
+                        <Button className="secondary" icon="plus" iconPlace="prefix" value="Add Other" disabled={!otherText.otherText} handleClick={(e) => addOther(e, 'healthOthers')} />
                     </div>
                 </div>
                 <div className="col-12 pt-20">
-                    <TextArea id="empUserComment" name="empUserComment" value={clearanceValue.empUserComment || ''} placeholder="Enter your comments" handleChange={updateClearance} />
+                    <TextArea id="healthUserComment" name="healthUserComment" value={clearanceValue.healthUserComment || ''} placeholder="Enter your comments" handleChange={updateClearance} />
                 </div>
             </div>
-            <h2>Employee’s Department Manager's Approval</h2>
+            <h2>Health & Safety Manager's Approval</h2>
             <div className="row">
                 <div className="col-12 col-md-4">
                     <div>
-                        <RadioButton id="empManagerApprove" name="empManagerApprove" value="Approve" handleChange={updateApprove} checked={approve.empManagerApprove.toLowerCase() === ('Approve').toLowerCase()} />
+                        <RadioButton id="healthManagerApprove" name="healthManagerApprove" value="Approve" handleChange={updateApprove} checked={approve.healthManagerApprove.toLowerCase() === ('Approve').toLowerCase()} />
                     </div>
                     <div>
-                        <RadioButton id="empManagerReject" name="empManagerApprove" value="Reject" handleChange={updateApprove} checked={approve.empManagerApprove.toLowerCase() === ('Reject').toLowerCase()} />
+                        <RadioButton id="healthManagerReject" name="healthManagerApprove" value="Reject" handleChange={updateApprove} checked={approve.healthManagerApprove.toLowerCase() === ('Reject').toLowerCase()} />
                     </div>
                 </div>
                 <div className="col-12 col-md-8">
-                    <TextArea id="empManagerApproveCmt" name="empManagerApproveCmt" value={approve.empManagerApproveCmt || ''} placeholder="Enter your comments" handleChange={updateApprove} disabled={!approve.empManagerApprove} />
+                    <TextArea id="healthManagerApproveCmt" name="healthManagerApproveCmt" value={approve.healthManagerApproveCmt || ''} placeholder="Enter your comments" handleChange={updateApprove} disabled={!approve.healthManagerApprove} />
                 </div>
             </div>
 
             <div className="btn-container text-right">
-                <Button className="secondary" icon="save" iconPlace="prefix" value="Save" disabled={!approve.empManagerApproveCmt} />
-                <Button className="primary" icon="save" iconPlace="prefix" value="Submit" disabled={!approve.empManagerApproveCmt} />
+                <Button className="secondary" icon="save" iconPlace="prefix" value="Save" disabled={!approve.healthManagerApproveCmt} />
+                <Button className="primary" icon="save" iconPlace="prefix" value="Submit" disabled={!approve.healthManagerApproveCmt} />
             </div>
             <hr />
         </>
     )
 }
 
-export default Employee;
+export default Health;

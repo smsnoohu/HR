@@ -257,7 +257,7 @@ const LeaveRequest = props => {
                 </div>
             </div>
 
-            <div className="request-container">
+            <div className="form-container">
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-3">
                         <label className="label-block" htmlFor="leaveType">Leave type</label>
