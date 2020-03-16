@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContextProvider';
 import Datepicker from '../../Shared/FormComponents/DatePicker/Datepicker';
-import DateRange from '../../Shared/FormComponents/DatePicker/DateRange';
 import { DateFormetter } from '../../../utils/DateFormetter';
 import TextBox from '../../Shared/FormComponents/TextBox';
 import SelectBox from '../../Shared/FormComponents/SelectBox';
@@ -258,7 +257,7 @@ const LeaveRequest = props => {
                 </div>
             </div>
 
-            <div className="request-container">
+            <div className="form-container">
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-3">
                         <label className="label-block" htmlFor="leaveType">Leave type</label>

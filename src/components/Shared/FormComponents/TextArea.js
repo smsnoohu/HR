@@ -11,7 +11,8 @@ const TextArea = ({ id, className, name, value, handleChange, disabled, maxlengt
             disabled={disabled}
             maxLength={maxlength}
             placeholder={placeholder}
-        >{value}</textarea>
+            defaultValue={value}
+        ></textarea>
     );
 }
 export default TextArea;
