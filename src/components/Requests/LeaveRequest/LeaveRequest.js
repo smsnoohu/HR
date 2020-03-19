@@ -28,7 +28,7 @@ const LeaveRequest = props => {
     const { startDate, endDate, reportDate, contactInVacation, mobileNoInVacation, emailInVacation, leaveType, ticketStatus } = inpValue;
 
     const updateLeave = e => {
-        const { name, type, checked, value } = e.target;
+        const { name, value } = e.target;
         const newState = {
             ...inpValue,
             [name]: value
@@ -461,12 +461,12 @@ const LeaveRequest = props => {
                                     </div>
                                 </div>
                                 <div className="btn-container">
-                                    <Button className="primary" icon="save" iconPlace="prefix" value="Save" />
+                                    <Button className="secondary" icon="save" iconPlace="prefix" value="Save" />
                                     <Button className="primary" icon="check" iconPlace="prefix" value="Submit" />
                                     <Button className="primary" icon="undo" iconPlace="prefix" value="Return" />
                                     <Button className="primary" icon="forward" iconPlace="sufix" value="Forward" />
                                     <Button className="primary" icon="share" iconPlace="prefix" value="Delegate" />
-                                    <Button className="primary" icon="times" iconPlace="prefix" value="Reject" />
+                                    <Button className="danger" icon="times" iconPlace="prefix" value="Reject" />
                                 </div>
                             </>
                         }
