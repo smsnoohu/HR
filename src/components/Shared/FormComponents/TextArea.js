@@ -12,6 +12,7 @@ const TextArea = ({ id, className, name, value, handleChange, disabled, maxlengt
             maxLength={maxlength}
             placeholder={placeholder}
             defaultValue={value}
+            autoComplete="nope"
         ></textarea>
     );
 }

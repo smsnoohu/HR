@@ -9,16 +9,28 @@ import SelectBox from '../Shared/FormComponents/SelectBox';
 import File from '../Shared/FormComponents/File';
 import Datepicker from '../Shared/FormComponents/DatePicker/Datepicker';
 import { DateFormetter } from '../../utils/DateFormetter';
-import { ASSIGNMENT_TYPE, CITY_LIST, COUNTRY_LIST, ASSIGNMENT_DETAILS, TRAVEL_SEC_1 } from './TravelAuthConst';
+import { ASSIGNMENT_TYPE, CITY_LIST, COUNTRY_LIST, ASSIGNMENT_DETAILS, TRAVEL_SEC_1, TRAVEL_SEC_2, TRAVEL_APPROVAL, PERDIEM_INFO } from './TravelAuthConst';
 
 const TravelAuth = () =>{
     console.log('TravelAuth');
 
     const { userObject } = useContext(AuthContext);
     const [assignmentDetails, setAssignmentDetails] = useState(ASSIGNMENT_DETAILS);
-    const [travelSecOne, setTravelSecOne] = useState(TRAVEL_SEC_1);
+    const [travelSecOne, setTravelSecOne] = useState(TRAVEL_SEC_1.empRequirement);
+    const [travelSecOneComment, setTravelSecOneComment] = useState(TRAVEL_SEC_1);
+    const [travelSecSec, setTravelSecSec] = useState(TRAVEL_SEC_2);
+    const [serviceClassification, setServiceClassification] = useState(TRAVEL_SEC_2.serviceClassification);
+    const [approval, setApproval] = useState(TRAVEL_APPROVAL);
+    const [perDiem, setPerDiem] = useState(PERDIEM_INFO.perDiemDetails);
+    const [perDiemDetail, setPerDiemDetail] = useState(PERDIEM_INFO);
+
+    const { empComment } = travelSecOneComment
 
     const { assignmentType, assignmentAttachment, assignmentDays, assignmentStartDate, assignmentEndDate, resumeDate, destinationCity, destinationCountry, assignmentPurpose } = assignmentDetails;
+
+    const { totalCost, ticketClass, adminComment } = travelSecSec;
+
+    const { perDiemTotal, perDiemPreparedBy, perDiemSubmitDate } = perDiemDetail;
 
     const handleAssignmentType = e => {
 
@@ -52,6 +64,80 @@ const TravelAuth = () =>{
         newState[index][name] = value;
 
         setTravelSecOne(newState);
+    }
+
+    const updateTravelSecOneComment = e => {
+        const { name, value } = e.target;
+        const newState = {
+            ...travelSecOneComment,
+            [name]: value
+        }
+        setTravelSecOneComment(newState);
+    }
+
+    const updateSecTwo = e => {
+        const { name, value } = e.target;
+
+        const newState = {
+            ...travelSecSec,
+            [name]: value
+        }
+
+        setTravelSecSec(newState);
+    }
+
+    const updateClassification = (e, name, index) => {
+        const { value } = e.target;
+
+        const newState = [...serviceClassification];
+
+        newState[index][name] = value;
+
+        setServiceClassification(newState);
+    }
+
+    const updateApprove = (e, index) => {
+        
+        const { name, value } = e.target;
+        
+        const newState = [...approval];
+        newState[index][name] = value;
+        setApproval(newState);
+    }
+
+    const updateApproveDate = (name, date, index) => {
+        const formettedDate = DateFormetter(date);
+        const newState = [...approval];
+        newState[index][name] = formettedDate;
+        setApproval(newState);
+    } 
+
+    const updatePerdiem = (e, index) => {
+        const { name, value } = e.target;
+        
+        const newState = [...perDiem];
+        newState[index][name] = value;
+        setPerDiem(newState);
+    }
+
+    const updatePerDiemDetail = e => {
+        const { name, value } = e.target;
+
+        const newState = {
+            ...perDiemDetail,
+            [name]: value
+        }
+        setPerDiemDetail(newState);
+    }
+
+    const updatePerDiemDate = (name, date) => {
+        const formettedDate = DateFormetter(date);
+
+        const newState = {
+            ...perDiemDetail,
+            [name]: formettedDate
+        }
+        setPerDiemDetail(newState);
     }
 
     return(
@@ -154,6 +240,11 @@ const TravelAuth = () =>{
                             </Fragment>
                         )
                     })}
+
+                    <div className="col-12">
+                        <label className="label-block" htmlFor="empComment">Employee Comment</label>
+                        <TextArea id="empComment" name="empComment" value={empComment || ''} placeholder="Enter your comments" handleChange={updateTravelSecOneComment}  />
+                    </div>
                 </div>
 
                 <div className="btn-container text-right">
@@ -164,6 +255,102 @@ const TravelAuth = () =>{
                 <hr />
 
                 <h2>To be filled by employee & admin</h2>
+
+                <p>Type of services rendered by company</p>
+
+                <div className="row">
+                    <div className="col-12 col-md-6 col-lg-4">
+                        <label className="label-block" htmlFor="totalCost">Ticket Cost</label>
+                        <TextBox id="totalCost" name="totalCost" value={totalCost || ''} placeholder="Enter total cost of the trip" handleChange={updateSecTwo} />
+                    </div>
+                    <div className="col-12 col-md-6 col-lg-4">
+                        <label className="label-block" htmlFor="ticketClass">Ticket Class</label>
+                        <RadioButton id="ticketClass_1" name="ticketClass" value="First" handleChange={updateSecTwo} checked={ticketClass === 'First'} />
+                        <RadioButton id="ticketClass_2" name="ticketClass" value="Business" handleChange={updateSecTwo} checked={ticketClass === 'Business'} />
+                        <RadioButton id="ticketClass_3" name="ticketClass" value="Economy" handleChange={updateSecTwo} checked={ticketClass === 'Economy'} />
+                    </div>
+                    { serviceClassification.map((classification, index) => {
+                        return(
+                            <div className="col-12 col-md-6 col-lg-4" key={classification.id}>
+                                <label className="label-block" htmlFor={`${classification.id}_${index}`}>{classification.labelText}{classification.share && ' - ' + classification.share}</label>
+                                <RadioButton id={`${classification.id}_${index}_1`} name={`isRequired_${classification.id}`} value="Yes" handleChange={(e) => updateClassification(e, 'isRequired', index)} checked={classification.isRequired === 'Yes'} />
+                                <RadioButton id={`${classification.id}_${index}_2`} name={`isRequired_${classification.id}`} value="No" handleChange={(e) => updateClassification(e, 'isRequired', index)} checked={classification.isRequired === 'No'} />
+                            </div>
+                        )
+                    })}
+
+                    <div className="col-12">
+                        <label className="label-block" htmlFor="adminComment">Admin Comment</label>
+                        <TextArea id="adminComment" name="adminComment" value={adminComment || ''} placeholder="Enter your comments" handleChange={updateSecTwo}  />
+                    </div>
+                </div>
+
+                <div className="btn-container text-right">
+                    <Button className="secondary" icon="save" iconPlace="prefix" value="Save" />
+                    <Button className="primary" icon="check" iconPlace="prefix" value="Submit" />
+                </div>
+
+                <hr />
+
+                <h2>Review & Approve</h2>
+                { approval.map((approve, index) => {
+                    return(
+                        <Fragment key={approve.id}>
+                            <h3>{approve.approverContext} {approve.approverPosition}</h3>
+                            <div className="row">
+                                <div className="col-12">
+                                    <label className="label-block" htmlFor={`cmt_${approve.id}`}>Comment</label>
+                                    <TextArea id={`cmt_${approve.id}`} name="approverCmt" value={approve.approverCmt || ''} placeholder="Enter your comments" handleChange={(e) => updateApprove(e, index)}  />
+                                </div>
+                                <div className="col-12 col-md-4">
+                                    <label className="label-block" htmlFor={`name_${approve.id}`}>Name</label>
+                                    <TextBox id={`name_${approve.id}`} name="approverName" value={approve.approverName || ''} placeholder="Enter Your Name" handleChange={(e) => updateApprove(e, index)} />
+                                </div>
+                                <div className="col-12 col-md-4">
+                                    <label className="label-block" htmlFor={`sign_${approve.id}`}>Signature</label>
+                                    <TextBox id={`sign_${approve.id}`} name="approverSign" value={approve.approverSign || ''} placeholder="Enter Your Initial" handleChange={(e) => updateApprove(e, index)} />
+                                </div>
+                                <div className="col-12 col-md-4">
+                                    <label className="label-block" htmlFor={`sign_${approve.id}`}>Signature</label>
+                                    <Datepicker id="approvedDate" name="approvedDate" value={approve.approvedDate || ''} handleChange={(date) => updateApproveDate('approvedDate', date, index)} />
+                                </div>
+                            </div>
+                            <div className="btn-container text-right">
+                                <Button className="secondary" icon="save" iconPlace="prefix" value="Save" />
+                                <Button className="primary" icon="check" iconPlace="prefix" value="Submit" />
+                            </div>
+                            <hr />
+                        </Fragment>
+                    )
+                })}
+
+                <h2>Per Diem Info</h2>
+                <div className="row">
+                    { perDiem.map((perdiem, index) => {
+                        return(
+                            <div className="col-12 col-md-4" key={perdiem.id}>
+                                <label className="label-block" htmlFor={`perdiem_${perdiem.id}`}>{perdiem.label}</label>
+                                <TextBox id={`perdiem_${perdiem.id}`} name="value" value={perdiem.value || ''} placeholder={perdiem.label} handleChange={(e) => updatePerdiem(e, index)}  />
+                            </div>
+                        )
+                    })}
+                    <div className="col-12 col-md-4">
+                        <label className="label-block" htmlFor="perDiemTotal">Per Diem Total Amount</label>
+                        <TextBox id="perDiemTotal" name="perDiemTotal" value={perDiemTotal || ''} placeholder="Per Diem Total Amount" handleChange={updatePerDiemDetail} />
+                    </div>
+                    <div className="col-12 col-md-4">
+                        <label className="label-block" htmlFor="perDiemPreparedBy">Prepared by</label>
+                        <TextBox id="perDiemPreparedBy" name="perDiemPreparedBy" value={perDiemPreparedBy || ''} placeholder="Prepared by" handleChange={updatePerDiemDetail} />
+                    </div>
+                    <div className="col-12 col-md-4">
+                        <label className="label-block" htmlFor="perDiemSubmitDate">Date</label>
+                        <Datepicker id="perDiemSubmitDate" name="perDiemSubmitDate" value={perDiemSubmitDate || ''} handleChange={(date) => updatePerDiemDate('perDiemSubmitDate', date)} />
+                    </div>
+                </div>
+                <div className="btn-container text-right">
+                    <Button className="secondary" icon="save" iconPlace="prefix" value="Save" />
+                    <Button className="primary" icon="check" iconPlace="prefix" value="Submit" />
+                </div>
             </div>
             
         </>
