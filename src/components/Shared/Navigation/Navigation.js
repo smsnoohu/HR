@@ -34,6 +34,7 @@ const Navigation = () => {
                 <li><NavLink to="/Framework" className="fa-laptop-code"><span>Framework</span></NavLink></li>
                 <li><NavLink to="/LeaveRequest" className="fa-plane-departure"><span>Leave Request</span></NavLink></li>
                 <li><NavLink to="/Clearance" className="fa-door-open"><span>Clearance</span></NavLink></li>
+                <li><NavLink to="/TravelAuth" className="fa-plane"><span>Travel Authorization</span></NavLink></li>
             </ul>
         </aside>
     );

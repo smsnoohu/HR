@@ -1,19 +1,18 @@
 import React from 'react';
-const TextArea = ({ id, className, name, value, handleChange, disabled, maxlength, placeholder}) =>{
+const File = ({ id, className, name, value, handleChange, disabled, maxlength, placeholder}) =>{
     return(
-        <textarea
-            cols=""
-            rows=""
+        <input
+            type="file"
             className={`form-control${className ? ' ' + className : ''}`}
             name={name}
             id={id}
+            value={value}
             onChange={handleChange}
             disabled={disabled}
             maxLength={maxlength}
             placeholder={placeholder}
-            defaultValue={value}
             autoComplete="nope"
-        ></textarea>
+        />
     );
 }
-export default TextArea;
+export default File;
