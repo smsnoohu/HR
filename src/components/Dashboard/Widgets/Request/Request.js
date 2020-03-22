@@ -1,6 +1,6 @@
 import React from 'react';
 import './request.scss';
-import CheckBox from '../../../Shared/FormComponents/CheckBox';
+import CheckBox from '../../../../main/Shared/FormComponents/CheckBox';
 
 const Request = () =>{
 

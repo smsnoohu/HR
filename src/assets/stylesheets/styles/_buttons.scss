@@ -88,6 +88,17 @@
             box-shadow:0 0 0 0.2rem rgba(130, 138, 145, 0.5);
         }
     }
+    &.btn-light{
+        background-color:$light;
+        border-color:$secondary;
+        &:hover{
+            background-color:$light-hover;
+            border-color:$light-hover;
+        }
+        &:focus{
+            box-shadow:0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+        }
+    }
 }
 table{
     .btn{

@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Dashboard from './Dashboard/Dashboard';
-import NewsUpdates from './NewsUpdates/NewsUpdates';
+import Dashboard from '../components/Dashboard/Dashboard';
+import NewsUpdates from '../components/NewsUpdates/NewsUpdates';
 import Framework from './Framework/Framework';
-import LeaveRequest from './Requests/LeaveRequest/LeaveRequest';
-import Clearance from './Clearance/Clearance';
-import TravelAuth from './TravelAuth/TravelAuth';
+import LeaveRequest from '../components/Requests/LeaveRequest/LeaveRequest';
+import Clearance from '../components/Clearance/Clearance';
+import TravelAuth from '../components/TravelAuth/TravelAuth';
+import ExpensesClaim from '../components/ExpensesClaim/ExpensesClaim';
 
 const ContainerNav = () => {
     return(
@@ -16,6 +17,7 @@ const ContainerNav = () => {
             <Route path="/LeaveRequest" component={LeaveRequest} />
             <Route path="/Clearance" component={Clearance} />
             <Route path="/TravelAuth" component={TravelAuth} />
+            <Route path="/ExpensesClaim" component={ExpensesClaim} />
         </Switch>
     );
 }

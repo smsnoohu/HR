@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContextProvider';
-import Datepicker from '../../Shared/FormComponents/DatePicker/Datepicker';
+import Datepicker from '../../../main/Shared/FormComponents/DatePicker/Datepicker';
 import { DateFormetter } from '../../../utils/DateFormetter';
-import TextBox from '../../Shared/FormComponents/TextBox';
-import SelectBox from '../../Shared/FormComponents/SelectBox';
-import RadioButton from '../../Shared/FormComponents/RadioButton';
-import TextArea from '../../Shared/FormComponents/TextArea';
-import Button from '../../Shared/FormComponents/Button';
+import TextBox from '../../../main/Shared/FormComponents/TextBox';
+import SelectBox from '../../../main/Shared/FormComponents/SelectBox';
+import RadioButton from '../../../main/Shared/FormComponents/RadioButton';
+import TextArea from '../../../main/Shared/FormComponents/TextArea';
+import Button from '../../../main/Shared/FormComponents/Button';
 import { LEAVE_REQUEST, LEAVE_TYPE, EMPLOYEE_DETAILS, CITY_LIST, ROLES, ACTION_DETAILS, ACTION_LIST, DEPT_LIST } from './leaveRequestConst';
 import { LEAVE_STATUS } from '../../../constants/constants';
 

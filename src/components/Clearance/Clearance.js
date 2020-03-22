@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContextProvider';
-import Button from '../Shared/FormComponents/Button';
+import Button from '../../main/Shared/FormComponents/Button';
 import { CLEARANCE_FIELD, CLEARANCE_APPROVAL, ROLE } from './ClearanceConst';
 import Employee from './Departments/Employee/Employee';
 import Admin from './Departments/Admin/Admin';

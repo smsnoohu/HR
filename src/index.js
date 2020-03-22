@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './polyfill.js';
-import App from './components/App';
+import App from './main/App';
 import * as serviceWorker from './serviceWorker';
 import AuthContextProvider from './context/AuthContextProvider';
 
