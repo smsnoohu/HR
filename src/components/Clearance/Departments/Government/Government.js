@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Checkbox from '../../../Shared/FormComponents/CheckBox';
-import TextBox from '../../../Shared/FormComponents/TextBox';
-import TextArea from '../../../Shared/FormComponents/TextArea';
-import RadioButton from '../../../Shared/FormComponents/RadioButton';
-import Button from '../../../Shared/FormComponents/Button';
+import Checkbox from '../../../../main/Shared/FormComponents/CheckBox';
+import TextBox from '../../../../main/Shared/FormComponents/TextBox';
+import TextArea from '../../../../main/Shared/FormComponents/TextArea';
+import RadioButton from '../../../../main/Shared/FormComponents/RadioButton';
+import Button from '../../../../main/Shared/FormComponents/Button';
 import { CLEARANCE_FIELD } from '../../ClearanceConst';
 
 const Government = ({ clearanceValue, updateClearance, approve, updateApprove }) => {

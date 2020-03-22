@@ -26,4 +26,16 @@
             }
         }
     }
+    tfoot{
+        tr{
+            td{
+                background-color:$table-footer-bg;
+                color:$white;
+                font-family:'philosopherregular';
+                font-weight:100;
+                font-size:1.2rem;
+                vertical-align:middle;
+            }
+        }
+    }
 }

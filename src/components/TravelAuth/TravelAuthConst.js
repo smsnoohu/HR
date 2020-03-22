@@ -89,7 +89,7 @@ export const TRAVEL_SEC_1 = {
             id:'TSO_3',
             labelText: 'Transport (To/From) Airport',
             isRequired: '',
-            isAttachment: true,
+            isAttachment: false,
             attachment: ''
         },
         {
@@ -132,7 +132,7 @@ export const TRAVEL_SEC_2 = {
         {
             id: 'TST_2',
             labelText: 'Food',
-            share: '25%',
+            share: '',
             isRequired: ''
         },
         {

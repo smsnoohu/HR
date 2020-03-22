@@ -1,13 +1,12 @@
 import React, { useContext, useState, Fragment } from 'react';
 import { AuthContext } from '../../context/AuthContextProvider';
-import Checkbox from '../Shared/FormComponents/CheckBox';
-import TextBox from '../Shared/FormComponents/TextBox';
-import TextArea from '../Shared/FormComponents/TextArea';
-import RadioButton from '../Shared/FormComponents/RadioButton';
-import Button from '../Shared/FormComponents/Button';
-import SelectBox from '../Shared/FormComponents/SelectBox';
-import File from '../Shared/FormComponents/File';
-import Datepicker from '../Shared/FormComponents/DatePicker/Datepicker';
+import TextBox from '../../main/Shared/FormComponents/TextBox';
+import TextArea from '../../main/Shared/FormComponents/TextArea';
+import RadioButton from '../../main/Shared/FormComponents/RadioButton';
+import Button from '../../main/Shared/FormComponents/Button';
+import SelectBox from '../../main/Shared/FormComponents/SelectBox';
+import File from '../../main/Shared/FormComponents/File';
+import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
 import { DateFormetter } from '../../utils/DateFormetter';
 import { ASSIGNMENT_TYPE, CITY_LIST, COUNTRY_LIST, ASSIGNMENT_DETAILS, TRAVEL_SEC_1, TRAVEL_SEC_2, TRAVEL_APPROVAL, PERDIEM_INFO } from './TravelAuthConst';
 
@@ -203,7 +202,7 @@ const TravelAuth = () =>{
                         <Datepicker id="assignmentEndDate" name="assignmentEndDate" value={assignmentEndDate || ''} handleChange={(date) => updateAssignmentDate('assignmentEndDate', date)} />
                     </div>
                     <div className="col-12 col-md-4">
-                        <label className="label-block" htmlFor="resumeDate">Assignment End Date</label>
+                        <label className="label-block" htmlFor="resumeDate">Resume Date</label>
                         <Datepicker id="resumeDate" name="resumeDate" value={resumeDate || ''} handleChange={(date) => updateAssignmentDate('resumeDate', date)} />
                     </div>
                     <div className="col-12 col-md-4">
@@ -235,7 +234,7 @@ const TravelAuth = () =>{
                                     <label className="label" htmlFor={`${travel.id}_attachment_${index}`}>Attachment</label>
                                 </div>
                                 <div className="col-12 col-md-4">
-                                    <File id={`${travel.id}_attachment_${index}`} name="attachment" handleChange={handleAssignmentType} handleChange={(e) => updateSecOne(e, 'attachment', index)} />
+                                    { travel.isAttachment && <File id={`${travel.id}_attachment_${index}`} name="attachment" handleChange={handleAssignmentType} handleChange={(e) => updateSecOne(e, 'attachment', index)} /> }
                                 </div>
                             </Fragment>
                         )

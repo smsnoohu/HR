@@ -35,6 +35,7 @@ const Navigation = () => {
                 <li><NavLink to="/LeaveRequest" className="fa-plane-departure"><span>Leave Request</span></NavLink></li>
                 <li><NavLink to="/Clearance" className="fa-door-open"><span>Clearance</span></NavLink></li>
                 <li><NavLink to="/TravelAuth" className="fa-plane"><span>Travel Authorization</span></NavLink></li>
+                <li><NavLink to="/ExpensesClaim" className="fa-file-invoice-dollar"><span>Expenses Claim</span></NavLink></li>
             </ul>
         </aside>
     );

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Checkbox from '../../../Shared/FormComponents/CheckBox';
-import TextBox from '../../../Shared/FormComponents/TextBox';
-import TextArea from '../../../Shared/FormComponents/TextArea';
-import Button from '../../../Shared/FormComponents/Button';
-import RadioButton from '../../../Shared/FormComponents/RadioButton';
+import Checkbox from '../../../../main/Shared/FormComponents/CheckBox';
+import TextBox from '../../../../main/Shared/FormComponents/TextBox';
+import TextArea from '../../../../main/Shared/FormComponents/TextArea';
+import Button from '../../../../main/Shared/FormComponents/Button';
+import RadioButton from '../../../../main/Shared/FormComponents/RadioButton';
 import { CLEARANCE_FIELD } from '../../ClearanceConst';
 
 const HR = ({ clearanceValue, updateClearance, approve, updateApprove }) => {
