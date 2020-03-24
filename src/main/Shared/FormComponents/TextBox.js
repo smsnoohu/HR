@@ -11,7 +11,7 @@ const TextBox = ({ id, className, name, value, handleChange, disabled, maxlength
             disabled={disabled}
             maxLength={maxlength}
             placeholder={placeholder}
-            autoComplete="nope"
+            autoComplete="off"
             readOnly={readOnly}
         />
     );
