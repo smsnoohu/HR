@@ -7,6 +7,7 @@ import LeaveRequest from '../components/Requests/LeaveRequest/LeaveRequest';
 import Clearance from '../components/Clearance/Clearance';
 import TravelAuth from '../components/TravelAuth/TravelAuth';
 import ExpensesClaim from '../components/ExpensesClaim/ExpensesClaim';
+import ChildEducation from '../components/ChildEducation/ChildEducation';
 
 const ContainerNav = () => {
     return(
@@ -18,6 +19,7 @@ const ContainerNav = () => {
             <Route path="/Clearance" component={Clearance} />
             <Route path="/TravelAuth" component={TravelAuth} />
             <Route path="/ExpensesClaim" component={ExpensesClaim} />
+            <Route path="/ChildEducation" component={ChildEducation} />
         </Switch>
     );
 }
