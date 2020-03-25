@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContextProvider';
+import Label from '../../../main/Shared/FormComponents/Label';
 import Datepicker from '../../../main/Shared/FormComponents/DatePicker/Datepicker';
 import { DateFormetter } from '../../../utils/DateFormetter';
 import TextBox from '../../../main/Shared/FormComponents/TextBox';
@@ -231,28 +232,28 @@ const LeaveRequest = props => {
             <div className="card">
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">ID #</label>
+                        <Label value="Empoyee ID #" />
                         <p>{userObject.userID}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Employee Name</label>
+                        <Label value="Employee Name" />
                         <p>{userObject.EmployeeName}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Hiring Date</label>
-                        <p>{userObject.hiringDate}</p>
+                        <Label value="Primary Contact #" />
+                        <p>{userObject.PrimaryContactNo}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Job Title & Department</label>
+                        <Label value="Job Title & Department" />
                         <p>{userObject.jobTitle} - {userObject.dept}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Shift Group</label>
-                        <p>{userObject.shiftGroup}</p>
+                        <Label value="Hiring Date" />
+                        <p>{userObject.hiringDate}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Cost Center</label>
-                        <p>{userObject.costCenter}</p>
+                        <Label value="Type of Work" />
+                        <p>{userObject.typeOfWork}</p>
                     </div>
                 </div>
             </div>
@@ -260,36 +261,36 @@ const LeaveRequest = props => {
             <div className="form-container">
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="leaveType">Leave type</label>
+                        <Label htmlFor="leaveType" value="Leave type" />
                         <SelectBox id="leaveType" name="leaveType" handleChange={handleLeaveType} value={leaveType[0].id || ''} options={LEAVE_TYPE} placeholder="Select Leave Type" disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="stateDate">Starting date</label>
+                        <Label htmlFor="stateDate" value="Starting date" />
                         <Datepicker id="stateDate" name="startDate" value={startDate || ''} handleChange={(date) => updateDate('startDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="endDate">Ending date</label>
+                        <Label htmlFor="endDate" value="Ending date" />
                         <Datepicker id="endDate" name="endDate" value={endDate || ''} handleChange={(date) => updateDate('endDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="reportDate">Reporting date</label>
+                        <Label htmlFor="reportDate" value="Reporting date" />
                         <Datepicker id="reportDate" name="reportDate" value={reportDate || ''} handleChange={(date) => updateDate('reportDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="ticketCompany">Ticket status</label>
+                        <Label htmlFor="ticketCompany" value="Ticket status" />
                         <RadioButton id="ticketCompany" name="ticketStatus" value="Company" handleChange={updateLeave} checked={ticketStatus.toLowerCase() === ('Company').toLowerCase()} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                         <RadioButton id="ticketEmployee" name="ticketStatus" value="Employee" handleChange={updateLeave} checked={ticketStatus.toLowerCase() === ('Employee').toLowerCase()} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="contactInVacation">Contact during vacation</label>
+                        <Label htmlFor="contactInVacation" value="Contact during vacation" />
                         <TextBox id="contactInVacation" name="contactInVacation" value={contactInVacation || ''} maxlength="100" placeholder="Enter Contact name during vacation" handleChange={updateLeave} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="mobileNoInVacation">Mobile #</label>
+                        <Label htmlFor="mobileNoInVacation" value="Mobile #" />
                         <TextBox id="mobileNoInVacation" name="mobileNoInVacation" value={mobileNoInVacation || ''} placeholder="Enter mobile number during vacation" handleChange={updateLeave} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="emailInVacation">Email address</label>
+                        <Label htmlFor="emailInVacation" value="Email address" />
                         <TextBox id="emailInVacation" name="emailInVacation" value={emailInVacation || ''} placeholder="Enter email address during vacation" handleChange={updateLeave} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                 </div>
@@ -297,36 +298,36 @@ const LeaveRequest = props => {
                 <h2>Employee Details</h2>
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-4">
-                        <label className="label-block" htmlFor="empName">Employee name</label>
+                        <Label htmlFor="empName" value="Employee name" />
                         <TextBox id="empName" name="name" value={empValue.name || ''} handleChange={updateEmployee} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-2">
-                        <label className="label-block" htmlFor="empAge">Age</label>
+                        <Label htmlFor="empAge" value="Age" />
                         <TextBox id="empAge" name="age" value={empValue.age || ''} handleChange={updateEmployee} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-2">
-                        <label className="label-block" htmlFor="empGender">Gender</label>
+                        <Label htmlFor="empGender" value="Gender" />
                         <RadioButton id="empGenderMale" name="empGender" value="Male" checked={empValue.empGender.toLowerCase() === ('Male').toLowerCase()} handleChange={updateEmployee} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                         <RadioButton id="empGenderFemale" name="empGender" value="Female" checked={empValue.empGender.toLowerCase() === ('Female').toLowerCase()} handleChange={updateEmployee} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-4">
-                        <label className="label-block" htmlFor="dateOfTicket">Date of ticket</label>
+                        <Label htmlFor="dateOfTicket" value="Date of ticket" />
                         <Datepicker id="empFromDate" name="fromDate" value={empValue.fromDate || ''} handleChange={(date) => updateEmpFromToDate('fromDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                         <Datepicker id="empToDate" name="toDate" value={empValue.toDate || ''} handleChange={(date) => updateEmpFromToDate('toDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-4">
-                        <label className="label-block" htmlFor="ticketClass">Ticket clasification</label>
+                        <Label htmlFor="ticketClass" value="Ticket clasification" />
                         <RadioButton id="empOneway" name="ticketClass" value="One way" checked={empValue.ticketClass.toLowerCase() === ('One way').toLowerCase()} handleChange={updateEmployee} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                         <RadioButton id="empRound" name="ticketClass" value="Round trip" checked={empValue.ticketClass.toLowerCase() === ('Round trip').toLowerCase()} handleChange={updateEmployee} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                         <RadioButton id="empExit" name="ticketClass" value="Final exit" checked={empValue.ticketClass.toLowerCase() === ('Final exit').toLowerCase()} handleChange={updateEmployee} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-4">
-                        <label className="label-block" htmlFor="ticketRoute">Ticket route</label>
+                        <Label htmlFor="ticketRoute" value="Ticket route" />
                         <SelectBox id="empRouteFrom" name="fromRoute" inline value={empValue.fromRoute} options={CITY_LIST} placeholder="From" handleChange={updateEmployee} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                         <SelectBox id="empRouteTo" name="toRoute" inline value={empValue.toRoute} options={CITY_LIST} placeholder="To" handleChange={updateEmployee} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-4">
-                        <label className="label-block" htmlFor="location">Present Location</label>
+                        <Label htmlFor="location" value="Present Location" />
                         <RadioButton id="empKSA" name="location" value="In KSA" checked={empValue.location.toLowerCase() === ('In KSA').toLowerCase()} handleChange={updateEmployee} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                         <RadioButton id="empOutKSA" name="location" value="Out of KSA" checked={empValue.location.toLowerCase() === ('Out of KSA').toLowerCase()} handleChange={updateEmployee} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
@@ -347,40 +348,40 @@ const LeaveRequest = props => {
                                     </h3>
                                     <div className="row">
                                         <div className="col-12 col-md-4 col-lg-3">
-                                            <label className="label-block" htmlFor={`name_${index}`}>Dependent Name</label>
+                                            <Label htmlFor={`name_${index}`} value="Dependent Name" />
                                             <TextBox id={`name_${index}`} name="name" value={depedent.name || ''} handleChange={(e) => updateDependent(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                         </div>
                                         <div className="col-12 col-md-2">
-                                            <label className="label-block" htmlFor={`relation_${index}`}>Dependent Relation</label>
+                                            <Label htmlFor={`relation_${index}`} value="Dependent Relation" />
                                             <TextBox id={`relation_${index}`} name="relation" value={depedent.relation || ''} handleChange={(e) => updateDependent(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                         </div>
                                         <div className="col-12 col-md-2 col-lg-1">
-                                            <label className="label-block" htmlFor={`age_${index}`}>Age</label>
+                                            <Label htmlFor={`age_${index}`} value="Age" />
                                             <TextBox id={`age_${index}`} name="age" maxlength="2" value={depedent.age || ''} handleChange={(e) => updateDependent(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                         </div>
                                         <div className="col-12 col-md-2">
-                                            <label className="label-block" htmlFor={`gender_${depedent.id}`}>Gender</label>
+                                            <Label htmlFor={`gender_${depedent.id}`} value="Gender" />
                                             <RadioButton id={`gender_${index}_0`} name={`gender_${depedent.id}`} dataName="gender" value="Male" checked={depedent.gender.toLowerCase() === ('Male').toLowerCase()} handleChange={(e) => updateRadio(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                             <RadioButton id={`gender_${index}_1`} name={`gender_${depedent.id}`} dataName="gender" value="Female" checked={depedent.gender.toLowerCase() === ('Female').toLowerCase()} handleChange={(e) => updateRadio(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                         </div>
                                         <div className="col-12 col-md-4">
-                                            <label className="label-block" htmlFor="dateOfTicket">Date of ticket</label>
+                                            <Label htmlFor={`dateOfTicket_${index}`} value="Date of ticket" />
                                             <Datepicker id={`fromDate_${depedent.id}`} name="fromDate" value={depedent.fromDate || ''} handleChange={(date) => updateFromToDate('fromDate', date, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                             <Datepicker id={`toDate_${depedent.id}`} name="toDate" value={depedent.toDate || ''} handleChange={(date) => updateFromToDate('toDate', date, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                         </div>
                                         <div className="col-12 col-md-4">
-                                            <label className="label-block" htmlFor={`ticketClass_${index}`}>Ticket clasification</label>
+                                            <Label htmlFor={`ticketClass_${index}`} value="Ticket clasification" />
                                             <RadioButton id={`ticketClass_${index}_0`} name={`ticketClass_${depedent.id}`} dataName="ticketClass" value="One way" checked={depedent.ticketClass.toLowerCase() === ('One way').toLowerCase()} handleChange={(e) => updateRadio(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                             <RadioButton id={`ticketClass_${index}_1`} name={`ticketClass_${depedent.id}`} dataName="ticketClass" value="Round trip" checked={depedent.ticketClass.toLowerCase() === ('Round trip').toLowerCase()} handleChange={(e) => updateRadio(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                             <RadioButton id={`ticketClass_${index}_2`} name={`ticketClass_${depedent.id}`} dataName="ticketClass" value="Final exit" checked={depedent.ticketClass.toLowerCase() === ('Final exit').toLowerCase()} handleChange={(e) => updateRadio(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                         </div>
                                         <div className="col-12 col-md-4">
-                                            <label className="label-block" htmlFor="ticketRoute">Ticket route</label>
+                                            <Label htmlFor="ticketRoute" value="Ticket route" />
                                             <SelectBox id={`fromRoute_${index}`} name="fromRoute" inline value={depedent.fromRoute} options={CITY_LIST} placeholder="From" handleChange={(e) => updateDependent(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                             <SelectBox id={`toRoute_${index}`} name="toRoute" inline value={depedent.toRoute} options={CITY_LIST} placeholder="To" handleChange={(e) => updateDependent(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                         </div>
                                         <div className="col-12 col-md-4">
-                                            <label className="label-block" htmlFor="location">Present Location</label>
+                                            <Label htmlFor="location" value="Present Location" />
                                             <RadioButton id={`location_${index}_0`} name={`location_${depedent.id}`} dataName="location" value="In KSA" checked={depedent.location.toLowerCase() === ('In KSA').toLowerCase()} handleChange={(e) => updateRadio(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                             <RadioButton id={`location_${index}_1`} name={`location_${depedent.id}`} dataName="location" value="Out of KSA" checked={depedent.location.toLowerCase() === ('Out of KSA').toLowerCase()} handleChange={(e) => updateRadio(e, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                         </div>

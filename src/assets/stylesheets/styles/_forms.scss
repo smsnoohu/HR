@@ -7,9 +7,11 @@
 }
 .label{
     @include label();
-    &-block{
+    &-inline{
         @include label();
-        display:block;
+        display:inline-block;
+        vertical-align:1px;
+        padding-right:10px;
     }
 }
 .required{

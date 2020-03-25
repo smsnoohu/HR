@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Label from '../../main/Shared/FormComponents/Label';
 import TextBox from '../../main/Shared/FormComponents/TextBox';
 import RadioButton from '../../main/Shared/FormComponents/RadioButton';
 import SelectBox from '../../main/Shared/FormComponents/SelectBox';
@@ -38,53 +39,53 @@ const RequestDetail = ( { userObject, selectedEmp } ) => {
                 { selectedEmp !== '' && selectedEmp !== null && userObject.userID.toLowerCase() !== selectedEmp.toLowerCase()  &&
                     <>
                         <div className="col-12 col-md-4 col-lg-3">
-                            <label className="label" htmlFor="reqEmpName">Employee Name</label>
+                            <Label htmlFor="reqEmpName" value="Employee Name" />
                             <TextBox id="reqEmpName" name="reqEmpName" value={reqEmpName || ''} placeholder="Employee Name" handleChange={updateReqDetail} />
                         </div>
                         <div className="col-12 col-md-4 col-lg-3">
-                            <label className="label" htmlFor="reqEmpID">Employee ID</label>
+                            <Label htmlFor="reqEmpID" value="Employee ID" />
                             <TextBox id="reqEmpID" name="reqEmpID" value={reqEmpID || ''} placeholder="Employee ID" handleChange={updateReqDetail} />
                         </div>
                         <div className="col-12 col-md-4 col-lg-3">
-                            <label className="label" htmlFor="reqEmpContact">Contact #</label>
+                            <Label htmlFor="reqEmpContact" value="Contact #" />
                             <TextBox id="reqEmpContact" name="reqEmpContact" value={reqEmpContact || ''} placeholder="Contact Number" handleChange={updateReqDetail} />
                         </div>
                         <div className="col-12 col-md-4 col-lg-3">
-                            <label className="label" htmlFor="reqJobTitle">Job Title</label>
+                            <Label htmlFor="reqJobTitle" value="Job Title" />
                             <TextBox id="reqJobTitle" name="reqJobTitle" value={reqJobTitle || ''} placeholder="Job Title" handleChange={updateReqDetail} />
                         </div>
                         <div className="col-12 col-md-4 col-lg-3">
-                            <label className="label" htmlFor="reqDept">Department</label>
+                            <Label htmlFor="reqDept" value="Department" />
                             <TextBox id="reqDept" name="reqDept" value={reqDept || ''} placeholder="Department" handleChange={updateReqDetail} />
                         </div>
                     </>
                 }
                 <div className="col-12 col-md-4 col-lg-3">
-                    <label className="label-block" htmlFor="reqTravelStartDate">Travel Start Date</label>
+                    <Label htmlFor="reqTravelStartDate" value="Travel Start Date" />
                     <Datepicker id="reqTravelStartDate" name="reqTravelStartDate" value={reqTravelStartDate || ''} handleChange={(date) => updateReqDate('reqTravelStartDate', date)} />
                 </div>
                 <div className="col-12 col-md-4 col-lg-3">
-                    <label className="label-block" htmlFor="reqTravelEndDate">Travel End Date</label>
+                    <Label htmlFor="reqTravelEndDate" value="Travel End Date" />
                     <Datepicker id="reqTravelEndDate" name="reqTravelEndDate" value={reqTravelEndDate || ''} handleChange={(date) => updateReqDate('reqTravelEndDate', date)} />
                 </div>
                 <div className="col-12 col-md-4 col-lg-3">
-                    <label className="label" htmlFor="reqTtotalDays"># of Days</label>
+                    <Label htmlFor="reqTtotalDays" value="# of Days" />
                     <TextBox id="reqTtotalDays" name="reqTtotalDays" value={reqTtotalDays || ''} placeholder="Number of Days" handleChange={updateReqDetail} />
                 </div>
                 <div className="col-12 col-md-4 col-lg-3">
-                    <label className="label" htmlFor="reqTravelPurpose">Travel Purpose</label>
+                    <Label htmlFor="reqTravelPurpose" value="Travel Purpose" />
                     <TextBox id="reqTravelPurpose" name="reqTravelPurpose" value={reqTravelPurpose || ''} placeholder="Travel Purpose" handleChange={updateReqDetail} />
                 </div>
                 <div className="col-12 col-md-4 col-lg-3">
-                    <label className="label" htmlFor="reqTravelCountry">Travel Country</label>
+                    <Label htmlFor="reqTravelCountry" value="Travel Country" />
                     <SelectBox id="reqTravelCountry" name="reqTravelCountry" handleChange={updateReqDetail} value={reqTravelCountry || ''} options={CITY_LIST} placeholder="Select Country" />
                 </div>
                 <div className="col-12 col-md-4 col-lg-3">
-                    <label className="label" htmlFor="reqTravelCity">Travel City</label>
+                    <Label htmlFor="reqTravelCity" value="Travel City" />
                     <SelectBox id="reqTravelCity" name="reqTravelCity" handleChange={updateReqDetail} value={reqTravelCity || ''} options={COUNTRY_LIST} placeholder="Select Country" />
                 </div>
                 <div className="col-12 col-md-4 col-lg-3">
-                    <label className="label" htmlFor="reqTotalAmount">Total Amount (SAR)</label>
+                    <Label htmlFor="reqTotalAmount" value="Total Amount (SAR)" />
                     <TextBox id="reqTotalAmount" name="reqTotalAmount" value={reqTotalAmount || ''} placeholder="Total Amount (SAR)" handleChange={updateReqDetail} />
                 </div>
             </div>
@@ -92,12 +93,12 @@ const RequestDetail = ( { userObject, selectedEmp } ) => {
             <h2>Per Diem Detail</h2>
             <div className="row">
                 <div className="col-12 col-md-4 col-lg-3">
-                    <label className="label-block" htmlFor="reqIsAdvace">Advance Received</label>
+                    <Label htmlFor="reqIsAdvace" value="Advance Received" />
                     <RadioButton id="reqIsAdvace_Yes" name="reqIsAdvace" value="Yes" handleChange={updateReqDetail} checked={reqIsAdvace === 'Yes'} />
                     <RadioButton id="reqIsAdvace_No" name="reqIsAdvace" value="No" handleChange={updateReqDetail} checked={reqIsAdvace === 'No'} />
                 </div>
                 <div className="col-12 col-md-4 col-lg-3">
-                    <label className="label" htmlFor="reqAdvace">Advace Amount (SAR)</label>
+                    <Label htmlFor="reqAdvace" value="Advace Amount (SAR)" />
                     <TextBox id="reqAdvace" name="reqAdvace" value={reqAdvace || ''} placeholder="Advace Amount (SAR)" handleChange={updateReqDetail} />
                 </div>
             </div>
