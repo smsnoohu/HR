@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import Label from '../../main/Shared/FormComponents/Label';
 import TextBox from '../../main/Shared/FormComponents/TextBox';
 import TextArea from '../../main/Shared/FormComponents/TextArea';
 import Button from '../../main/Shared/FormComponents/Button';
@@ -33,20 +34,20 @@ const Approval = () => {
                         <h3>{approve.approverContext} {approve.approverPosition}</h3>
                         <div className="row">
                             <div className="col-12">
-                                <label className="label-block" htmlFor={`cmt_${approve.id}`}>Comment</label>
+                                <Label htmlFor={`cmt_${approve.id}`} value="Comment" />
                                 <TextArea id={`cmt_${approve.id}`} name="approverCmt" value={approve.approverCmt || ''} placeholder="Enter your comments" handleChange={(e) => updateApprove(e, index)}  />
                             </div>
                             <div className="col-12 col-md-4">
-                                <label className="label-block" htmlFor={`name_${approve.id}`}>Name</label>
+                                <Label htmlFor={`name_${approve.id}`} value="Name" />
                                 <TextBox id={`name_${approve.id}`} name="approverName" value={approve.approverName || ''} placeholder="Enter Your Name" handleChange={(e) => updateApprove(e, index)} />
                             </div>
                             <div className="col-12 col-md-4">
-                                <label className="label-block" htmlFor={`sign_${approve.id}`}>Signature</label>
+                                <Label htmlFor={`sign_${approve.id}`} value="Signature" />
                                 <TextBox id={`sign_${approve.id}`} name="approverSign" value={approve.approverSign || ''} placeholder="Enter Your Initial" handleChange={(e) => updateApprove(e, index)} />
                             </div>
                             <div className="col-12 col-md-4">
-                                <label className="label-block" htmlFor={`sign_${approve.id}`}>Signature</label>
-                                <Datepicker id="approvedDate" name="approvedDate" value={approve.approvedDate || ''} handleChange={(date) => updateApproveDate('approvedDate', date, index)} />
+                                <Label htmlFor={`date_${approve.id}`} value="Date" />
+                                <Datepicker id={`date_${approve.id}`} name="approvedDate" value={approve.approvedDate || ''} handleChange={(date) => updateApproveDate('approvedDate', date, index)} />
                             </div>
                         </div>
                         <div className="btn-container text-right">

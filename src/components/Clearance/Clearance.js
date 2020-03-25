@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContextProvider';
+import Label from '../../main/Shared/FormComponents/Label';
 import Button from '../../main/Shared/FormComponents/Button';
 import { CLEARANCE_FIELD, CLEARANCE_APPROVAL, ROLE } from './ClearanceConst';
 import Employee from './Departments/Employee/Employee';
@@ -66,27 +67,27 @@ const Clearance = () =>{
             <div className="card">
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Empoyee ID #</label>
+                        <Label value="Empoyee ID #" />
                         <p>{userObject.userID}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Employee Name</label>
+                        <Label value="Employee Name" />
                         <p>{userObject.EmployeeName}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Primary Contact #</label>
+                        <Label value="Primary Contact #" />
                         <p>{userObject.PrimaryContactNo}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Job Title & Department</label>
+                        <Label value="Job Title & Department" />
                         <p>{userObject.jobTitle} - {userObject.dept}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Hiring Date</label>
+                        <Label value="Hiring Date" />
                         <p>{userObject.hiringDate}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Type of work</label>
+                        <Label value="Type of Work" />
                         <p>{userObject.typeOfWork}</p>
                     </div>
                 </div>

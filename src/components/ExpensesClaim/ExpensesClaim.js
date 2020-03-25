@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContextProvider';
 import { EventContext } from '../../context/EventContextProvider';
+import Label from '../../main/Shared/FormComponents/Label';
 import Button from '../../main/Shared/FormComponents/Button';
 import SelectBox from '../../main/Shared/FormComponents/SelectBox';
 import Modal from '../../main/Shared/Modal/Modal';
@@ -37,27 +38,27 @@ const ExpensesClaim = () => {
             <div className="card">
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Empoyee ID #</label>
+                        <Label value="Empoyee ID #" />
                         <p>{userObject.userID}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Employee Name</label>
+                        <Label value="Employee Name" />
                         <p>{userObject.EmployeeName}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Primary Contact #</label>
+                        <Label value="Primary Contact #" />
                         <p>{userObject.PrimaryContactNo}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Job Title & Department</label>
+                        <Label value="Job Title & Department" />
                         <p>{userObject.jobTitle} - {userObject.dept}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Hiring Date</label>
+                        <Label value="Hiring Date" />
                         <p>{userObject.hiringDate}</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <label className="label-block" htmlFor="">Type of work</label>
+                        <Label value="Type of Work" />
                         <p>{userObject.typeOfWork}</p>
                     </div>
                 </div>
@@ -66,15 +67,15 @@ const ExpensesClaim = () => {
             <div className="form-container">
                 <div className="row">
                     <div className="col-12 col-md-3">
-                        <label className="label-block" htmlFor="requestFor">Request for</label>
+                        <Label htmlFor="requestFor" value="Request for" />
                         <SelectBox id="requestFor" name="selectedEmp" handleChange={updateEmpList} value={selectedEmp || ''} options={EMP_LIST} placeholder="Select employee to raise request" />
                     </div>
                     <div className="col-12 col-md-3">
-                        <label className="label-block" htmlFor="requestType">Request Type</label>
+                        <Label htmlFor="requestType" value="Request Type" />
                         <SelectBox id="requestType" name="requestType" handleChange={updateEmpList} value={requestType || ''} options={REQ_LIST} placeholder="Select Request Type" />
                     </div>
                     <div className="col-12 col-md-3 col-lg-3">
-                        <label className="label-block" htmlFor="">&nbsp;</label>
+                        <Label value="&nbsp;" />
                         <Button className="primary" icon="play" iconPlace="prefix" value="Start Process" />
                     </div>
                 </div>
