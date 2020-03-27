@@ -6,7 +6,7 @@ const EventContextProvider = props => {
     const [clicked, setClicked] = useState({});
 
     function toggleComponent(e, target){
-        let component = target || e.target.dataset.target;
+        let component = target || e.target.dataset.target || '';
         e.preventDefault();
         setClicked({ ...clicked, [component]: !clicked[component] });
     }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './datepicker.scss';
-const Datepicker = ({ className, name, id, value, inline, maxDate, handleChange, selectsStart, startDate, endDate, minDate, disabled }) => {
+const Datepicker = ({ className, name, id, value, inline, maxDate, handleChange, selectsStart, startDate, endDate, minDate, disabled, showMonthYearPicker }) => {
     const [pickDate, setPickDate] = useState(null);
     const setDate = date => setPickDate(date);
     return(
@@ -20,6 +20,7 @@ const Datepicker = ({ className, name, id, value, inline, maxDate, handleChange,
             endDate={endDate}
             minDate={startDate}
             disabled={disabled}
+            showMonthYearPicker={showMonthYearPicker}
         />
     );
 }
