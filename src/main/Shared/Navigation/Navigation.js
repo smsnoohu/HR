@@ -9,7 +9,7 @@ const Navigation = () => {
 
     return(
         <aside id="left-nav">
-            <Link to="#" className="toggle-nav" data-target="left-nav" onClick={e => toggleComponent(e)}></Link>
+            <Link to="#" className="toggle-nav" data-target="left-nav" onClick={toggleComponent}></Link>
             <div className="nav-profile">
                 <div className="user-img"><img src={require('../../../assets/images/profile.jpg')} alt="Mohamed Noohu" /></div>
                 <div className="user-profile-details">
@@ -21,7 +21,7 @@ const Navigation = () => {
             </div>
             <ul className="left-nav">
                 <li className={ clicked['nav-dashboard'] ? 'open-sub-menu' : ''}>
-                    <Link to="#" className="fa-th" data-target="nav-dashboard" onClick={e => toggleComponent(e)}><span>Dashboard</span></Link>
+                    <Link to="#" className="fa-th" data-target="nav-dashboard" onClick={toggleComponent}><span>Dashboard</span></Link>
                     { clicked['nav-dashboard'] &&
                         <ul className="sub-nav">
                             <li><NavLink to="/">Sub Nav 1</NavLink></li>
@@ -37,6 +37,7 @@ const Navigation = () => {
                 <li><NavLink to="/TravelAuth" className="fa-plane"><span>Travel Authorization</span></NavLink></li>
                 <li><NavLink to="/ExpensesClaim" className="fa-file-invoice-dollar"><span>Expenses Claim</span></NavLink></li>
                 <li><NavLink to="/ChildEducation" className="fa-university"><span>Childred Education</span></NavLink></li>
+                <li><NavLink to="/OvertimeApproval" className="fa-user-clock"><span>Overtime Approval</span></NavLink></li>
             </ul>
         </aside>
     );

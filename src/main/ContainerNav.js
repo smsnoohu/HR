@@ -8,6 +8,7 @@ import Clearance from '../components/Clearance/Clearance';
 import TravelAuth from '../components/TravelAuth/TravelAuth';
 import ExpensesClaim from '../components/ExpensesClaim/ExpensesClaim';
 import ChildEducation from '../components/ChildEducation/ChildEducation';
+import OvertimeApproval from '../components/OvertimeApproval/OvertimeApproval';
 
 const ContainerNav = () => {
     return(
@@ -20,6 +21,7 @@ const ContainerNav = () => {
             <Route path="/TravelAuth" component={TravelAuth} />
             <Route path="/ExpensesClaim" component={ExpensesClaim} />
             <Route path="/ChildEducation" component={ChildEducation} />
+            <Route path="/OvertimeApproval" component={OvertimeApproval} />
         </Switch>
     );
 }

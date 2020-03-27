@@ -68,6 +68,21 @@ table{
         height:2rem;
     }
 }
+.child-row{
+    > td{
+        background-color:$odd-bg;
+        .form-control{
+            height:1.7rem;
+            min-width:50px;
+        }
+    }
+    &.scroll-row{
+        > td{
+            max-width:1px;
+            overflow:auto;
+        }
+    }
+}
 .check{
     @include customRadioCheck();
 }
