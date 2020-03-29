@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../context/AuthContextProvider';
 import Label from '../../main/Shared/FormComponents/Label';
 import TextBox from '../../main/Shared/FormComponents/TextBox';
 import RadioButton from '../../main/Shared/FormComponents/RadioButton';
 import SelectBox from '../../main/Shared/FormComponents/SelectBox';
 import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
-import { DateFormetter } from '../../utils/DateFormetter';
 import { CITY_LIST, COUNTRY_LIST, REQ_DETAIL } from './ExpensesClaimConst';
 
 const RequestDetail = ( { userObject, selectedEmp } ) => {
+
+    const { userPref } = useContext(AuthContext);
     const [reqDetail, setReqDetail] = useState(REQ_DETAIL);
 
     const { reqEmpName, reqEmpID, reqEmpContact, reqJobTitle, reqDept, reqTravelStartDate, reqTravelEndDate, reqTtotalDays, reqTravelPurpose, reqTravelCity, reqTravelCountry, reqTotalAmount, reqIsAdvace, reqAdvace } = reqDetail;
@@ -24,12 +26,11 @@ const RequestDetail = ( { userObject, selectedEmp } ) => {
     }
 
     const updateReqDate = (name, date) => {
-        const formettedDate = DateFormetter(date);
         const newState = {
             ...reqDetail,
-            [name]: formettedDate
+            [name]: date
         }
-
+        console.log('date: ', date);
         setReqDetail(newState);
     }
     return(
@@ -62,11 +63,11 @@ const RequestDetail = ( { userObject, selectedEmp } ) => {
                 }
                 <div className="col-12 col-md-4 col-lg-3">
                     <Label htmlFor="reqTravelStartDate" value="Travel Start Date" />
-                    <Datepicker id="reqTravelStartDate" name="reqTravelStartDate" value={reqTravelStartDate || ''} handleChange={(date) => updateReqDate('reqTravelStartDate', date)} />
+                    <Datepicker id="reqTravelStartDate" name="reqTravelStartDate" format={userPref.dateFormat} selected={reqTravelStartDate} endDate={reqTravelEndDate} value={reqTravelStartDate || ''} handleChange={(date) => updateReqDate('reqTravelStartDate', date)} />
                 </div>
                 <div className="col-12 col-md-4 col-lg-3">
                     <Label htmlFor="reqTravelEndDate" value="Travel End Date" />
-                    <Datepicker id="reqTravelEndDate" name="reqTravelEndDate" value={reqTravelEndDate || ''} handleChange={(date) => updateReqDate('reqTravelEndDate', date)} />
+                    <Datepicker id="reqTravelEndDate" name="reqTravelEndDate" format={userPref.dateFormat} selected={reqTravelEndDate} startDate={reqTravelStartDate} endDate={reqTravelEndDate} minDate={reqTravelStartDate} value={reqTravelEndDate || ''} handleChange={(date) => updateReqDate('reqTravelEndDate', date)} />
                 </div>
                 <div className="col-12 col-md-4 col-lg-3">
                     <Label htmlFor="reqTtotalDays" value="# of Days" />

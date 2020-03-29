@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../context/AuthContextProvider';
 import TextBox from '../../main/Shared/FormComponents/TextBox';
 import SelectBox from '../../main/Shared/FormComponents/SelectBox';
 import Button from '../../main/Shared/FormComponents/Button';
 import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
-import { DateFormetter } from '../../utils/DateFormetter';
 import { EXPENSES_DETAILS, EXP_LIST, CURRENCY_LIST } from './ExpensesClaimConst';
 
 const PerDiemExp = ({ toggleComponent }) => {
+
+    const { userPref } = useContext(AuthContext);
+
     let [perDiemExp, setPerDiemExp] = useState(EXPENSES_DETAILS.perDiemExp);
 
     const updatePerDiemExpenses = (e, index) => {
@@ -17,9 +20,8 @@ const PerDiemExp = ({ toggleComponent }) => {
     }
 
     const updatePerDiemExpDate = (name, date, index) => {
-        const formettedDate = DateFormetter(date);
         const newState = [...perDiemExp];
-        newState[index][name] = formettedDate;
+        newState[index][name] = date;
         setPerDiemExp(newState);
     }
 
@@ -72,7 +74,7 @@ const PerDiemExp = ({ toggleComponent }) => {
                                             <SelectBox id={`${exp.expType}_${index}`} name="expType" handleChange={(e) => updatePerDiemExpenses(e, index)} value={exp.expType || ''} options={EXP_LIST} placeholder="Select Expenses Type" />
                                         </td>
                                         <td data-head="Date Incurred">
-                                            <Datepicker id={`${exp.dateIncurred}_${index}`} name="dateIncurred" value={exp.dateIncurred || ''} handleChange={(date) => updatePerDiemExpDate('dateIncurred', date, index)} />
+                                            <Datepicker id={`${exp.dateIncurred}_${index}`} name="dateIncurred" format={userPref.dateFormat} selected={exp.dateIncurred} value={exp.dateIncurred || ''} handleChange={(date) => updatePerDiemExpDate('dateIncurred', date, index)} />
                                         </td>
                                         <td data-head="Currency">
                                             <SelectBox id={`${exp.currencyType}_${index}`} name="currencyType" handleChange={(e) => updatePerDiemExpenses(e, index)} value={exp.currencyType || ''} options={CURRENCY_LIST} placeholder="Select Currency Type" />

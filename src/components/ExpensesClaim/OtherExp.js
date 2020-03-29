@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../context/AuthContextProvider';
 import TextBox from '../../main/Shared/FormComponents/TextBox';
 import SelectBox from '../../main/Shared/FormComponents/SelectBox';
 import Button from '../../main/Shared/FormComponents/Button';
 import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
-import { DateFormetter } from '../../utils/DateFormetter';
 import { EXPENSES_DETAILS, EXP_LIST, CURRENCY_LIST } from './ExpensesClaimConst';
 
 const OtherExp = ({ toggleComponent }) => {
+
+    const { userPref } = useContext(AuthContext);
+
     let [otherExp, setOtherExp] = useState(EXPENSES_DETAILS.otherExp);
 
     const updateOtherExpenses = (e, index) => {
@@ -17,9 +20,8 @@ const OtherExp = ({ toggleComponent }) => {
     }
 
     const updateOtherExpDate = (name, date, index) => {
-        const formettedDate = DateFormetter(date);
         const newState = [...otherExp];
-        newState[index][name] = formettedDate;
+        newState[index][name] = date;
         setOtherExp(newState);
     }
 
@@ -72,7 +74,7 @@ const OtherExp = ({ toggleComponent }) => {
                                             <SelectBox id={`${exp.expType}_${index}`} name="expType" handleChange={(e) => updateOtherExpenses(e, index)} value={exp.expType || ''} options={EXP_LIST} placeholder="Select Expenses Type" />
                                         </td>
                                         <td data-head="Date Incurred">
-                                            <Datepicker id={`${exp.dateIncurred}_${index}`} name="dateIncurred" value={exp.dateIncurred || ''} handleChange={(date) => updateOtherExpDate('dateIncurred', date, index)} />
+                                            <Datepicker id={`${exp.dateIncurred}_${index}`} name="dateIncurred" format={userPref.dateFormat} selected={exp.dateIncurred} value={exp.dateIncurred || ''} handleChange={(date) => updateOtherExpDate('dateIncurred', date, index)} />
                                         </td>
                                         <td data-head="Currency">
                                             <SelectBox id={`${exp.currencyType}_${index}`} name="currencyType" handleChange={(e) => updateOtherExpenses(e, index)} value={exp.currencyType || ''} options={CURRENCY_LIST} placeholder="Select Currency Type" />

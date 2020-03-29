@@ -9,6 +9,7 @@ import TravelAuth from '../components/TravelAuth/TravelAuth';
 import ExpensesClaim from '../components/ExpensesClaim/ExpensesClaim';
 import ChildEducation from '../components/ChildEducation/ChildEducation';
 import OvertimeApproval from '../components/OvertimeApproval/OvertimeApproval';
+import WorkSchedule from '../components/WorkSchedule/WorkSchedule';
 
 const ContainerNav = () => {
     return(
@@ -22,6 +23,7 @@ const ContainerNav = () => {
             <Route path="/ExpensesClaim" component={ExpensesClaim} />
             <Route path="/ChildEducation" component={ChildEducation} />
             <Route path="/OvertimeApproval" component={OvertimeApproval} />
+            <Route path="/WorkSchedule" component={WorkSchedule} />
         </Switch>
     );
 }

@@ -1,12 +1,14 @@
 import React, { useContext, useState, Fragment } from 'react';
-import Label from '../../main/Shared/FormComponents/Label';
-import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
-import Button from '../../main/Shared/FormComponents/Button';
-import TextArea from '../../main/Shared/FormComponents/TextArea';
-import { DateFormetter } from '../../utils/DateFormetter';
-import { APPROVAL } from './OvertimeApprovalConst';
+import { AuthContext } from '../../../context/AuthContextProvider';
+import Label from '../FormComponents/Label';
+import Datepicker from '../FormComponents/DatePicker/Datepicker';
+import Button from '../FormComponents/Button';
+import TextArea from '../FormComponents/TextArea';
+import { APPROVAL } from './ApprovalConst';
 
-const Approval = ({ userObject }) => {
+const Approval = () => {
+
+    const { userObject, userPref } = useContext(AuthContext);
 
     const [approval, setApproval] = useState(APPROVAL);
 
@@ -21,9 +23,8 @@ const Approval = ({ userObject }) => {
     }
 
     const updateApproveDate = (name, date, index) => {
-        const formettedDate = DateFormetter(date);
         const newState = [...approval];
-        newState[index][name] = formettedDate;
+        newState[index][name] = date;
         setApproval(newState);
     }
 
@@ -52,7 +53,7 @@ const Approval = ({ userObject }) => {
                             </div>
                             <div className="col-12 col-md-3">
                                 <Label htmlFor={`date_${approve.id}`} value="Date" />
-                                <Datepicker id={`date_${approve.id}`} name="approvedDate" value={approve.approvedDate || ''} handleChange={(date) => updateApproveDate('approvedDate', date, index)} disabled={userObject.userID.toLowerCase() !== approve.approverID.toLowerCase()} />
+                                <Datepicker id={`date_${approve.id}`} name="approvedDate" format={userPref.dateFormat} selected={approve.approvedDate} value={approve.approvedDate || ''} handleChange={(date) => updateApproveDate('approvedDate', date, index)} disabled={userObject.userID.toLowerCase() !== approve.approverID.toLowerCase()} />
                             </div>
                         </div>
                         <div className="btn-container text-right">

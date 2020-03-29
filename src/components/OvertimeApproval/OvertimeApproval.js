@@ -1,5 +1,4 @@
 import React, { useContext, useState, Fragment } from 'react';
-import { AuthContext } from '../../context/AuthContextProvider';
 import { EventContext } from '../../context/EventContextProvider';
 import Label from '../../main/Shared/FormComponents/Label';
 import TextBox from '../../main/Shared/FormComponents/TextBox';
@@ -9,16 +8,27 @@ import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
 import Button from '../../main/Shared/FormComponents/Button';
 import { MonthYearFormetter } from '../../utils/DateFormetter';
 import { OT_INFO, OT_DETAIL } from './OvertimeApprovalConst';
-import Approval from './Approval';
+import Approval from '../../main/Shared/Approval/Approval';
+import UserInfo from '../../main/Shared/UserInfo/UserInfo';
+import Legend from './Legend';
 
 const OvertimeApproval = () => {
     console.log('Overtime Approval Page');
-    const { userObject } = useContext(AuthContext);
     const { clicked, toggleComponent } = useContext(EventContext);
 
-    const [overtimeInfo, setOvertimeInfo] = useState(OT_INFO);
+    const defaultOtData = OT_DETAIL;
+    const defaultOtInfo = OT_INFO;
 
-    let [approvalData, setApprovalData] = useState(OT_DETAIL);
+    const initialOtData = OT_DETAIL;
+    const initialOtInfo = OT_INFO;
+
+    const [overtimeInfo, setOvertimeInfo] = useState(initialOtInfo);
+
+    // const initialData = useState(OT_DETAIL);
+
+    let [approvalData, setApprovalData] = useState(initialOtData);
+
+    const [processStarted, setProcessStarted] = useState(false);
 
     const { monthYear, approvalType, otComment } = overtimeInfo;
 
@@ -27,13 +37,14 @@ const OvertimeApproval = () => {
     console.log('approvalData: ', approvalData);
 
     const updateApprovalInfoDate = (name, date) => {
-        const formettedDate = MonthYearFormetter(date);
         const newState = {
             ...overtimeInfo,
-            [name]: formettedDate
+            [name]: date
         }
         setOvertimeInfo(newState);
         console.log('newState: ', newState);
+
+        const formettedDate = MonthYearFormetter(date);
         const month = formettedDate.split('/')[0];
         const year = formettedDate.split('/')[1];
 
@@ -73,7 +84,25 @@ const OvertimeApproval = () => {
         setType(typeArr);
     }
 
-    const addApprovalDetails = e => {
+    const startProcess = e => {
+        e.preventDefault();
+        let newState;
+        approvalData.forEach((data, index) => {
+            newState = [...approvalData];
+            newState[index]['type'] = type;
+        });
+        setApprovalData(newState);
+        setProcessStarted(true);
+    }
+
+    const resetProcess = e => {
+        e.preventDefault();
+        setOvertimeInfo(defaultOtInfo)
+        setApprovalData(defaultOtData);
+        setProcessStarted(false);
+    }
+
+    const addNewEmployee = e => {
         e.preventDefault();
         const newApproval = {
             id: 'OT_' + approvalData.length + 1,
@@ -92,6 +121,7 @@ const OvertimeApproval = () => {
 
         approvalData = [...approvalData, newApproval];
         setApprovalData(approvalData);
+        setProcessStarted(true);
     }
 
     const updateApprovalDetails = (e, index) => {
@@ -122,50 +152,29 @@ const OvertimeApproval = () => {
     return(
         <>
             <h1>Overtime Pre & Post Approval</h1>
-            <div className="card">
-                <div className="row">
-                    <div className="col-12 col-md-6 col-lg-3">
-                        <Label value="Empoyee ID #" />
-                        <p>{userObject.userID}</p>
-                    </div>
-                    <div className="col-12 col-md-6 col-lg-3">
-                        <Label value="Employee Name" />
-                        <p>{userObject.EmployeeName}</p>
-                    </div>
-                    <div className="col-12 col-md-6 col-lg-3">
-                        <Label value="Primary Contact #" />
-                        <p>{userObject.PrimaryContactNo}</p>
-                    </div>
-                    <div className="col-12 col-md-6 col-lg-3">
-                        <Label value="Job Title & Department" />
-                        <p>{userObject.jobTitle} - {userObject.dept}</p>
-                    </div>
-                    <div className="col-12 col-md-6 col-lg-3">
-                        <Label value="Hiring Date" />
-                        <p>{userObject.hiringDate}</p>
-                    </div>
-                    <div className="col-12 col-md-6 col-lg-3">
-                        <Label value="Type of Work" />
-                        <p>{userObject.typeOfWork}</p>
-                    </div>
-                </div>
-            </div>
+
+            <UserInfo />
 
             <div className="form-container">
+
+                <Legend />
 
                 <div className="row">
                     <div className="col-12 col-md-4">
                         <Label htmlFor="monthYear" value="Month & Year" />
-                        <Datepicker id="monthYear" name="monthYear" value={monthYear || ''} showMonthYearPicker handleChange={(date) => updateApprovalInfoDate('monthYear', date)} />
+                        <Datepicker id="monthYear" name="monthYear" selected={monthYear} value={monthYear || ''} format="MM/yyyy" showMonthYearPicker handleChange={(date) => updateApprovalInfoDate('monthYear', date)} disabled={processStarted} />
                     </div>
                     <div className="col-12 col-md-4">
-                        <Label htmlFor="approvalType" value="Type of Approval" />
-                        <RadioButton id="approvalType_Pre" name="approvalType" value="Pre Approval" handleChange={updateApprovalInfo} checked={approvalType.toLowerCase() === ('Pre Approval').toLowerCase()} />
-                        <RadioButton id="approvalType_Post" name="approvalType" value="Post Approval" handleChange={updateApprovalInfo} checked={approvalType.toLowerCase() === ('Post Approval').toLowerCase()} />
+                        <Label value="Type of Approval" />
+                        <RadioButton id="approvalType_Pre" name="approvalType" value="Pre Approval" handleChange={updateApprovalInfo} checked={approvalType.toLowerCase() === ('Pre Approval').toLowerCase()} disabled={processStarted} />
+                        <RadioButton id="approvalType_Post" name="approvalType" value="Post Approval" handleChange={updateApprovalInfo} checked={approvalType.toLowerCase() === ('Post Approval').toLowerCase()} disabled={processStarted} />
+                    </div>
+                    <div className="col-12 col-md-4">
+                        <Label value="&nbsp;" />
+                        <Button className="primary mb-20" iconPlace="prefix" icon="check" value="Start Process" disabled={!monthYear || !approvalType || processStarted} handleClick={approvalData.length > 0 ? startProcess : addNewEmployee} />
+                        <Button className="secondary mb-20" iconPlace="prefix" icon="redo" value="Reset" disabled={!processStarted} handleClick={resetProcess} />
                     </div>
                 </div>
-
-                <Button className="secondary mb-20" iconPlace="prefix" icon="plus" value="Add New Employee" disabled={!monthYear || !approvalType} handleClick={addApprovalDetails} />
 
                 { approvalData.length > 0 && 
                     <>
@@ -187,7 +196,7 @@ const OvertimeApproval = () => {
                                         <Fragment key={approve.id}>
                                             <tr>
                                                 <td data-head="Time">
-                                                    <Button className="secondary btn-sm btn-full" target={approve.id} iconPlace="prefix" icon={`${clicked[approve.id] ? 'minus': 'plus'}`} value="Add Hrs" handleClick={toggleComponent} />
+                                                    <Button className="secondary btn-sm btn-full" target={approve.id} iconPlace="prefix" icon={`${clicked[approve.id] ? 'minus': 'plus'}`} value="Add Hrs" disabled={approve.type.length === 0} handleClick={toggleComponent} />
                                                 </td>
                                                 <td data-head="ID #">
                                                     <TextBox id={`${approve.empID}_empID`} name="empID" value={approve.empID || ''} placeholder="Emp ID" handleChange={(e) => updateApprovalDetails(e, index)} />
@@ -254,7 +263,7 @@ const OvertimeApproval = () => {
                                                                         { approve.type.map((type, shiftIndex) => {
                                                                             return(
                                                                                 <td data-head={`Day ${type.day}`} key={`shift_${type.id}`}>
-                                                                                    <TextBox id={`${type.day}_shift`} name="shift" value={type.shift || ''} placeholder="Hrs" handleChange={(e) => updateApprovalHrs(e, index, shiftIndex)} />
+                                                                                    <TextBox id={`${type.day}_shift`} name="shift" value={type.shift || ''} placeholder="Shift" handleChange={(e) => updateApprovalHrs(e, index, shiftIndex)} />
                                                                                 </td>
                                                                             ) 
                                                                         })}
@@ -291,6 +300,8 @@ const OvertimeApproval = () => {
                             </tbody>
                         </table>
 
+                        <Button className="secondary mb-20" iconPlace="prefix" icon="plus" value="Add New Employee" disabled={!processStarted} handleClick={addNewEmployee} />
+
                         <TextArea id="otComment" name="otComment" value={otComment || ''} placeholder="Enter your comments" handleChange={updateApprovalInfo} />
 
                         <div className="btn-container text-right">
@@ -300,7 +311,7 @@ const OvertimeApproval = () => {
 
                         <hr />
 
-                        <Approval userObject={userObject} />
+                        <Approval />
                     </>
                 }
             </div>

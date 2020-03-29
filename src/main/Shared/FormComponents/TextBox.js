@@ -1,5 +1,5 @@
 import React from 'react';
-const TextBox = ({ id, className, name, value, handleChange, disabled, maxlength, placeholder, readOnly}) =>{
+const TextBox = ({ id, className, name, value, handleChange, disabled, maxlength, placeholder, readOnly }) =>{
     return(
         <input
             type="text"

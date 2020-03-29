@@ -8,13 +8,12 @@ import Button from '../../main/Shared/FormComponents/Button';
 import SelectBox from '../../main/Shared/FormComponents/SelectBox';
 import File from '../../main/Shared/FormComponents/File';
 import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
-import { DateFormetter } from '../../utils/DateFormetter';
 import { ASSIGNMENT_TYPE, CITY_LIST, COUNTRY_LIST, ASSIGNMENT_DETAILS, TRAVEL_SEC_1, TRAVEL_SEC_2, TRAVEL_APPROVAL, PERDIEM_INFO } from './TravelAuthConst';
 
 const TravelAuth = () =>{
     console.log('TravelAuth');
 
-    const { userObject } = useContext(AuthContext);
+    const { userObject, userPref } = useContext(AuthContext);
     const [assignmentDetails, setAssignmentDetails] = useState(ASSIGNMENT_DETAILS);
     const [travelSecOne, setTravelSecOne] = useState(TRAVEL_SEC_1.empRequirement);
     const [travelSecOneComment, setTravelSecOneComment] = useState(TRAVEL_SEC_1);
@@ -48,10 +47,9 @@ const TravelAuth = () =>{
     }
 
     const updateAssignmentDate = (name, date) => {
-        const formettedDate = DateFormetter(date);
         const newState = {
             ...assignmentDetails,
-            [name]: formettedDate
+            [name]: date
         }
         setAssignmentDetails(newState);
     }
@@ -106,9 +104,8 @@ const TravelAuth = () =>{
     }
 
     const updateApproveDate = (name, date, index) => {
-        const formettedDate = DateFormetter(date);
         const newState = [...approval];
-        newState[index][name] = formettedDate;
+        newState[index][name] = date;
         setApproval(newState);
     } 
 
@@ -131,11 +128,10 @@ const TravelAuth = () =>{
     }
 
     const updatePerDiemDate = (name, date) => {
-        const formettedDate = DateFormetter(date);
 
         const newState = {
             ...perDiemDetail,
-            [name]: formettedDate
+            [name]: date
         }
         setPerDiemDetail(newState);
     }
@@ -196,15 +192,15 @@ const TravelAuth = () =>{
                     </div>
                     <div className="col-12 col-md-4">
                         <Label htmlFor="assignmentStartDate" value="Assignment Start Date" />
-                        <Datepicker id="assignmentStartDate" name="assignmentStartDate" value={assignmentStartDate || ''} handleChange={(date) => updateAssignmentDate('assignmentStartDate', date)} />
+                        <Datepicker id="assignmentStartDate" name="assignmentStartDate" format={userPref.dateFormat} selected={assignmentStartDate} endDate={assignmentEndDate} value={assignmentStartDate || ''} handleChange={(date) => updateAssignmentDate('assignmentStartDate', date)} />
                     </div>
                     <div className="col-12 col-md-4">
-                        <Label htmlFor="assignmentEndDate" value="Assignment Start Date" />
-                        <Datepicker id="assignmentEndDate" name="assignmentEndDate" value={assignmentEndDate || ''} handleChange={(date) => updateAssignmentDate('assignmentEndDate', date)} />
+                        <Label htmlFor="assignmentEndDate" value="Assignment End Date" />
+                        <Datepicker id="assignmentEndDate" name="assignmentEndDate" format={userPref.dateFormat} selected={assignmentEndDate} startDate={assignmentStartDate} endDate={assignmentEndDate} minDate={assignmentStartDate} value={assignmentEndDate || ''} handleChange={(date) => updateAssignmentDate('assignmentEndDate', date)} />
                     </div>
                     <div className="col-12 col-md-4">
                         <Label htmlFor="resumeDate" value="Resume Date" />
-                        <Datepicker id="resumeDate" name="resumeDate" value={resumeDate || ''} handleChange={(date) => updateAssignmentDate('resumeDate', date)} />
+                        <Datepicker id="resumeDate" name="resumeDate" format={userPref.dateFormat} selected={resumeDate} startDate={assignmentEndDate} minDate={assignmentEndDate} value={resumeDate || ''} handleChange={(date) => updateAssignmentDate('resumeDate', date)} />
                     </div>
                     <div className="col-12 col-md-4">
                         <Label htmlFor="destinationCity" value="Destination City" />
@@ -313,7 +309,7 @@ const TravelAuth = () =>{
                                 </div>
                                 <div className="col-12 col-md-4">
                                     <Label htmlFor={`sign_${approve.id}`} value="Date" />
-                                    <Datepicker id={`date_${approve.id}`} name="approvedDate" value={approve.approvedDate || ''} handleChange={(date) => updateApproveDate('approvedDate', date, index)} />
+                                    <Datepicker id={`date_${approve.id}`} name="approvedDate" format={userPref.dateFormat} selected={approve.approvedDate} value={approve.approvedDate || ''} handleChange={(date) => updateApproveDate('approvedDate', date, index)} />
                                 </div>
                             </div>
                             <div className="btn-container text-right">
@@ -345,7 +341,7 @@ const TravelAuth = () =>{
                     </div>
                     <div className="col-12 col-md-4">
                         <Label htmlFor="perDiemSubmitDate" value="Date" />
-                        <Datepicker id="perDiemSubmitDate" name="perDiemSubmitDate" value={perDiemSubmitDate || ''} handleChange={(date) => updatePerDiemDate('perDiemSubmitDate', date)} />
+                        <Datepicker id="perDiemSubmitDate" name="perDiemSubmitDate" format={userPref.dateFormat} selected={perDiemSubmitDate} value={perDiemSubmitDate || ''} handleChange={(date) => updatePerDiemDate('perDiemSubmitDate', date)} />
                     </div>
                 </div>
                 <div className="btn-container text-right">
