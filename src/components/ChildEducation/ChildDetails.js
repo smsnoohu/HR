@@ -1,4 +1,5 @@
 import React, { useContext, useState, Fragment } from 'react';
+import { AuthContext } from '../../context/AuthContextProvider';
 import Label from '../../main/Shared/FormComponents/Label';
 import Checkbox from '../../main/Shared/FormComponents/CheckBox';
 import TextBox from '../../main/Shared/FormComponents/TextBox';
@@ -6,10 +7,10 @@ import File from '../../main/Shared/FormComponents/File';
 import SelectBox from '../../main/Shared/FormComponents/SelectBox';
 import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
 import Button from '../../main/Shared/FormComponents/Button';
-import { DateFormetter } from '../../utils/DateFormetter';
 import { CHILD_DETAILS, CITY_LIST, COUNTRY_LIST } from './ChildEducationConst';
 
 const ChildDetails = () => {
+    const { userPref } = useContext(AuthContext);
     let [childDetail, setChildDetail] = useState(CHILD_DETAILS);
 
     const updateChildDetail = (e, index) => {
@@ -23,9 +24,8 @@ const ChildDetails = () => {
     }
 
     const updateChildDate = (name, date, index) => {
-        const formettedDate = DateFormetter(date);
         const newState = [...childDetail];
-        newState[index][name] = formettedDate;
+        newState[index][name] = date;
         setChildDetail(newState);
     }
 
@@ -94,7 +94,7 @@ const ChildDetails = () => {
                                     <TextBox id={`${child.id}_childName_${index}`} name="childName" value={child.childName || ''} placeholder="Enter Child Name" handleChange={(e) => updateChildDetail(e, index)} />
                                 </td>
                                 <td data-head="Date of Birth">
-                                    <Datepicker id={`${child.id}_childDOB_${index}`} name="childDOB" value={child.childDOB || ''} handleChange={(date) => updateChildDate('childDOB', date, index)} />
+                                    <Datepicker id={`${child.id}_childDOB_${index}`} name="childDOB" selected={child.childDOB} format={userPref.dateFormat} value={child.childDOB || ''} handleChange={(date) => updateChildDate('childDOB', date, index)} />
                                 </td>
                                 <td data-head="Age">
                                     <TextBox id={`${child.id}_childAge_${index}`} name="childAge" value={child.childAge || ''} placeholder="Child Age" handleChange={(e) => updateChildDetail(e, index)} />

@@ -7,7 +7,7 @@ import SelectBox from '../../main/Shared/FormComponents/SelectBox';
 import Modal from '../../main/Shared/Modal/Modal';
 import { EMP_LIST, REQ_LIST, SELECTED_EMP_INFO } from './ExpensesClaimConst';
 
-import Approval from './Approval';
+import Approval from '../../main/Shared/Approval/Approval';
 import PerDiemExp from './PerDiemExp';
 import OtherExp from './OtherExp';
 import RequestDetail from './RequestDetail';

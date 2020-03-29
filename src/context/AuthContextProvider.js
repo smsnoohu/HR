@@ -17,6 +17,12 @@ const AuthContextProvider = props => {
         typeOfWork: 'Contractor'
     });
 
+    const [userPref, setUserPref] = useState(
+        {
+            dateFormat: 'dd/MM/yyyy'
+        }
+    )
+
     const [isAunthetic, setIsAunthetic] = useState(false);
 
     console.log('userObject123: ', userObject, isAunthetic);
@@ -45,7 +51,8 @@ const AuthContextProvider = props => {
                 userObject,
                 setUserObject,
                 isAunthetic,
-                setIsAunthetic
+                setIsAunthetic,
+                userPref
             }}
         >
             {props.children}

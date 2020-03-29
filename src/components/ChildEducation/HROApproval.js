@@ -1,13 +1,15 @@
 import React, { useContext, useState, Fragment } from 'react';
+import { AuthContext } from '../../context/AuthContextProvider';
 import Label from '../../main/Shared/FormComponents/Label';
 import TextBox from '../../main/Shared/FormComponents/TextBox';
 import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
 import Button from '../../main/Shared/FormComponents/Button';
 import TextArea from '../../main/Shared/FormComponents/TextArea';
-import { DateFormetter } from '../../utils/DateFormetter';
 import { HR_DEPT, APPROVAL } from './ChildEducationConst';
 
 const HROApproval = ({ userObject }) => {
+
+    const { userPref } = useContext(AuthContext);
 
     const [hrUpdate, setHrUpdate] = useState(HR_DEPT);
 
@@ -28,10 +30,9 @@ const HROApproval = ({ userObject }) => {
     }
 
     const updateHRODate = (name, date) => {
-        const formettedDate = DateFormetter(date);
         const newState = {
             ...hrUpdate,
-            [name]: formettedDate
+            [name]: date
         };
         setHrUpdate(newState);
     }
@@ -47,9 +48,8 @@ const HROApproval = ({ userObject }) => {
     }
 
     const updateApproveDate = (name, date, index) => {
-        const formettedDate = DateFormetter(date);
         const newState = [...approval];
-        newState[index][name] = formettedDate;
+        newState[index][name] = date;
         setApproval(newState);
     }
 
@@ -72,9 +72,9 @@ const HROApproval = ({ userObject }) => {
                 <div className="col-12 col-md-12">
                     <Label value="Duration of Fees" />
                     <Label className="label-inline" htmlFor="feeDurationFromDate" value="From Date" />
-                    <Datepicker id="feeDurationFromDate" name="feeDurationFromDate" value={feeDurationFromDate || ''} handleChange={(date) => updateHRODate('feeDurationFromDate', date)} />
+                    <Datepicker id="feeDurationFromDate" name="feeDurationFromDate" format={userPref.dateFormat} selected={feeDurationFromDate} endDate={feeDurationToDate} value={feeDurationFromDate || ''} handleChange={(date) => updateHRODate('feeDurationFromDate', date)} />
                     <Label className="label-inline pl-20" htmlFor="feeDurationToDate" value="To Date" />
-                    <Datepicker id="feeDurationToDate" name="feeDurationToDate" value={feeDurationToDate || ''} handleChange={(date) => updateHRODate('feeDurationToDate', date)} />
+                    <Datepicker id="feeDurationToDate" name="feeDurationToDate" format={userPref.dateFormat} selected={feeDurationToDate} startDate={feeDurationFromDate} endDate={feeDurationToDate} minDate={feeDurationFromDate} value={feeDurationToDate || ''} handleChange={(date) => updateHRODate('feeDurationToDate', date)} />
                 </div>
                 <div className="col-12 col-md-4">
                     <Label htmlFor="empPaid" value="Emp. Paid Amount" />
@@ -113,7 +113,7 @@ const HROApproval = ({ userObject }) => {
                             </div>
                             <div className="col-12 col-md-3">
                                 <Label htmlFor={`date_${approve.id}`} value="Date" />
-                                <Datepicker id={`date_${approve.id}`} name="approvedDate" value={approve.approvedDate || ''} handleChange={(date) => updateApproveDate('approvedDate', date, index)} disabled={userObject.userID.toLowerCase() !== approve.approverID.toLowerCase()} />
+                                <Datepicker id={`date_${approve.id}`} name="approvedDate" format={userPref.dateFormat} selected={approve.approvedDate} value={approve.approvedDate || ''} handleChange={(date) => updateApproveDate('approvedDate', date, index)} disabled={userObject.userID.toLowerCase() !== approve.approverID.toLowerCase()} />
                             </div>
                         </div>
                         <div className="btn-container text-right">

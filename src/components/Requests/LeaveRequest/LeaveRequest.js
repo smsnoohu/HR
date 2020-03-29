@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContextProvider';
 import Label from '../../../main/Shared/FormComponents/Label';
 import Datepicker from '../../../main/Shared/FormComponents/DatePicker/Datepicker';
-import { DateFormetter } from '../../../utils/DateFormetter';
 import TextBox from '../../../main/Shared/FormComponents/TextBox';
 import SelectBox from '../../../main/Shared/FormComponents/SelectBox';
 import RadioButton from '../../../main/Shared/FormComponents/RadioButton';
@@ -15,7 +14,7 @@ import { LEAVE_STATUS } from '../../../constants/constants';
 const LeaveRequest = props => {
     console.log('Leave Request Page');
 
-    const { userObject } = useContext(AuthContext);
+    const { userObject, userPref } = useContext(AuthContext);
 
     const [currentStatus, SetCurrentStatus] = useState(ROLES);
 
@@ -41,10 +40,9 @@ const LeaveRequest = props => {
     }
 
     const updateDate = (name, date) => {
-        const formettedDate = DateFormetter(date);
         const newState = {
             ...inpValue,
-            [name]: formettedDate
+            [name]: date
         }
         setInpValue(newState);
 
@@ -82,11 +80,10 @@ const LeaveRequest = props => {
     }
 
     const updateEmpFromToDate = (name, date) => {
-        const formettedDate = DateFormetter(date);
 
         const newState = {
             ...empValue,
-            [name]: formettedDate
+            [name]: date
         }
 
         setEmpValue(newState);
@@ -118,10 +115,9 @@ const LeaveRequest = props => {
     }
 
     const updateFromToDate = (name, date, index) => {
-        const formettedDate = DateFormetter(date);
 
         const newDeptValue = [...deptValue];
-        newDeptValue[index][name] = formettedDate;
+        newDeptValue[index][name] = date;
         console.log('newState: ', newDeptValue);
 
         setDeptValue(newDeptValue);
@@ -180,10 +176,9 @@ const LeaveRequest = props => {
     }
 
     const updateActionDate = (name, date, index) => {
-        const formettedDate = DateFormetter(date);
 
         const newActionDetail = [...actionDetails];
-        newActionDetail[index][name] = formettedDate;
+        newActionDetail[index][name] = date;
         console.log('newState: ', newActionDetail);
 
         setDeptValue(newActionDetail);
@@ -266,15 +261,15 @@ const LeaveRequest = props => {
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
                         <Label htmlFor="stateDate" value="Starting date" />
-                        <Datepicker id="stateDate" name="startDate" value={startDate || ''} handleChange={(date) => updateDate('startDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
+                        <Datepicker id="stateDate" name="startDate" format={userPref.dateFormat} selected={startDate} endDate={endDate} value={startDate || ''} handleChange={(date) => updateDate('startDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
                         <Label htmlFor="endDate" value="Ending date" />
-                        <Datepicker id="endDate" name="endDate" value={endDate || ''} handleChange={(date) => updateDate('endDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
+                        <Datepicker id="endDate" name="endDate" format={userPref.dateFormat} selected={endDate} startDate={startDate} endDate={endDate} minDate={startDate} value={endDate || ''} handleChange={(date) => updateDate('endDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <Label htmlFor="reportDate" value="Reporting date" />
-                        <Datepicker id="reportDate" name="reportDate" value={reportDate || ''} handleChange={(date) => updateDate('reportDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
+                        <Label htmlFor="reportDate" value="Reporting date1" />
+                        <Datepicker id="reportDate" name="reportDate" format={userPref.dateFormat} selected={reportDate} startDate={endDate} minDate={endDate} value={reportDate || ''} handleChange={(date) => updateDate('reportDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
                         <Label htmlFor="ticketCompany" value="Ticket status" />
@@ -312,8 +307,8 @@ const LeaveRequest = props => {
                     </div>
                     <div className="col-12 col-md-4">
                         <Label htmlFor="dateOfTicket" value="Date of ticket" />
-                        <Datepicker id="empFromDate" name="fromDate" value={empValue.fromDate || ''} handleChange={(date) => updateEmpFromToDate('fromDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
-                        <Datepicker id="empToDate" name="toDate" value={empValue.toDate || ''} handleChange={(date) => updateEmpFromToDate('toDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
+                        <Datepicker id="empFromDate" name="fromDate" format={userPref.dateFormat} selected={empValue.fromDate} endDate={empValue.toDate} value={empValue.fromDate || ''} handleChange={(date) => updateEmpFromToDate('fromDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
+                        <Datepicker id="empToDate" name="toDate" format={userPref.dateFormat} selected={empValue.toDate} startDate={empValue.fromDate} endDate={empValue.toDate} minDate={empValue.fromDate} value={empValue.toDate || ''} handleChange={(date) => updateEmpFromToDate('toDate', date)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                     </div>
                     <div className="col-12 col-md-4">
                         <Label htmlFor="ticketClass" value="Ticket clasification" />
@@ -366,8 +361,8 @@ const LeaveRequest = props => {
                                         </div>
                                         <div className="col-12 col-md-4">
                                             <Label htmlFor={`dateOfTicket_${index}`} value="Date of ticket" />
-                                            <Datepicker id={`fromDate_${depedent.id}`} name="fromDate" value={depedent.fromDate || ''} handleChange={(date) => updateFromToDate('fromDate', date, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
-                                            <Datepicker id={`toDate_${depedent.id}`} name="toDate" value={depedent.toDate || ''} handleChange={(date) => updateFromToDate('toDate', date, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
+                                            <Datepicker id={`fromDate_${depedent.id}`} name="fromDate" format={userPref.dateFormat} selected={depedent.fromDate} endDate={depedent.toDate} value={depedent.fromDate || ''} handleChange={(date) => updateFromToDate('fromDate', date, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
+                                            <Datepicker id={`toDate_${depedent.id}`} name="toDate" format={userPref.dateFormat} selected={depedent.toDate} startDate={depedent.fromDate} endDate={depedent.toDate} minDate={depedent.fromDate} value={depedent.toDate || ''} handleChange={(date) => updateFromToDate('toDate', date, index)} disabled={currentStatus.role !== LEAVE_STATUS.NEW} />
                                         </div>
                                         <div className="col-12 col-md-4">
                                             <Label htmlFor={`ticketClass_${index}`} value="Ticket clasification" />
@@ -440,7 +435,7 @@ const LeaveRequest = props => {
                                                 <TextBox id={`respBy_${index}`} name="respBy" value={action.respBy || ''} handleChange={(e) => updateActionDetails(e, index)} />
                                             </td>
                                             <td data-head="Target Date">
-                                                <Datepicker id={`targetDate_${action.actionNo}`} name="targetDate" value={action.targetDate || ''} handleChange={(date) => updateActionDate('targetDate', date, index)} />
+                                                <Datepicker id={`targetDate_${action.actionNo}`} name="targetDate" format={userPref.dateFormat} selected={action.targetDate} value={action.targetDate || ''} handleChange={(date) => updateActionDate('targetDate', date, index)} />
                                             </td>
                                             <td data-head="Status">{action.status || 'Pending'}</td>
                                             <td data-head="Comments">

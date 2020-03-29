@@ -1,4 +1,4 @@
-export const DateFormetter = date => {
+export const DateFormetter = (date, format) => {
     const newDate = new Date(date);
 
     let dd = newDate.getDate();
@@ -12,10 +12,14 @@ export const DateFormetter = date => {
     if (mm < 10) {
         mm = '0' + mm;
     }
-
-    let shortDate = mm + '/' + dd + '/' + yyyy;
+    let shortDate = format === 'dd/MM/yyyy' ? dd + '/' + mm + '/' + yyyy : 'MM/dd/yyyy' ? mm + '/' + dd + '/' + yyyy : 'yyyy/MM/dd' ? yyyy + '/' + mm + '/' + dd : 'yyyy/dd/MM' ? yyyy + '/' + dd + '/' + mm: '';
     return shortDate;
 };
+
+export const ResetDateFormat = date => {
+    const newDate = new Date(date);
+    return newDate;
+}
 
 export const MonthYearFormetter = date => {
     const newDate = new Date(date);

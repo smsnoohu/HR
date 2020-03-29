@@ -38,6 +38,7 @@ const Navigation = () => {
                 <li><NavLink to="/ExpensesClaim" className="fa-file-invoice-dollar"><span>Expenses Claim</span></NavLink></li>
                 <li><NavLink to="/ChildEducation" className="fa-university"><span>Childred Education</span></NavLink></li>
                 <li><NavLink to="/OvertimeApproval" className="fa-user-clock"><span>Overtime Approval</span></NavLink></li>
+                <li><NavLink to="/WorkSchedule" className="fa-clock"><span>Work Schedule</span></NavLink></li>
             </ul>
         </aside>
     );
