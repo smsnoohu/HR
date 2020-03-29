@@ -6,7 +6,10 @@ $white-700:  rgba(255, 255, 255, .7) !default;
 $dark-red:  #dd2036 !default;
 $black:     #000 !default;
 $gray:      #333 !default;
-$gray-400:      #ced4da !default;
+$gray-100:      rgba(0, 0, 0, .1) !default;
+$gray-200:      rgba(0, 0, 0, .2) !default;
+$gray-300:      rgba(0, 0, 0, .3) !default;
+$gray-400:      rgba(0, 0, 0, .4) !default;
 $heading-color: #293845 !default;
 $link-color:    #3d7e9a !default;
 $card-bg:       #f4f4f4 !default;
@@ -16,7 +19,10 @@ $primary:          #007bff !default;
 $primary-hover:    #0069d9 !default;
 $secondary:       #6c757d !default;
 $secondary-hover: #5a6268 !default;
-$danger:          #f00 !default;
+$danger:          #dd2036 !default;
+$danger-hover:          #e20e27 !default;
+$light:          #f8f9fa !default;
+$light-hover:          #e2e6ea !default;
 
 
 $navigation-bg:         #293845 !default;
@@ -39,6 +45,7 @@ $btn-tab-color-3:     #5ca4f0 !default;
 $btn-tab-color-4:     #95cf4a !default;
 
 $table-header-bg:     #293845 !default;
+$table-footer-bg:     #4f4f4f !default;
 
 $odd-bg:         #f1f1f1 !default;
 $even-bg:        #e7e7e7 !default;

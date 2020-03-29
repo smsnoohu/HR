@@ -1,14 +1,19 @@
 export const LEAVE_REQUEST = {
-    startDate: '02/01/2020',
-    endDate: '03/03/2020',
-    reportDate: '03/04/2020',
+    startDate: '',
+    endDate: '',
+    reportDate: '',
     contactInVacation: 'Mohamed Noohu',
     mobileNoInVacation: '9942305949',
     emailInVacation: 'mohamed.noohu@gmail.com',
     leaveType: [{
         id: 1,
         desc: 'Annual Leave'
-    }]
+    }],
+    ticketStatus: 'Company'
+};
+
+export const ROLES = {
+    role: 'new'
 };
 
 export const LEAVE_TYPE = [
@@ -50,43 +55,115 @@ export const LEAVE_TYPE = [
     }
 ];
 
+export const CITY_LIST = [
+    {
+        id: "MAA",
+        desc: 'Chennai'
+    },
+    {
+        id: "CMB",
+        desc: 'Coimbatore'
+    },
+    {
+        id: 'SFO',
+        desc: 'San Fransisco'
+    },
+    {
+        id: 'NYC',
+        desc: 'New York City'
+    }
+];
+
 export const EMPLOYEE_DETAILS = {
     employee: [{
         name: 'Mohamed Noohu',
         age: 35,
-        gender: 'Male',
-        fromDate: '02/02/2020',
-        toDate: '03/02/2020',
+        empGender: 'Male',
+        fromDate: '',
+        toDate: '',
         ticketClass: 'One Way',
-        fromRoute: 'CA',
+        fromRoute: 'SFO',
         toRoute: 'MAA',
-        familyLocation: 'In KSA'
+        location: 'In KSA'
     }],
 
     depedent: [
         {
+            id: 1,
             name: 'Shaik Nuzla',
-            relationToEmployee: 'Spouse',
+            relation: 'Spouse',
             age: 30,
             gender: 'Female',
-            fromDate: '02/02/2020',
-            toDate: '03/02/2020',
+            fromDate: '',
+            toDate: '',
             ticketClass: 'One Way',
-            fromRoute: 'CA',
+            fromRoute: 'SFO',
             toRoute: 'MAA',
-            familyLocation: 'In KSA'
+            location: 'In KSA'
         },
         {
+            id: 2,
             name: 'Syed',
-            relationToEmployee: 'Child',
+            relation: 'Child',
             age: 12,
             gender: 'Male',
-            fromDate: '02/02/2020',
-            toDate: '03/02/2020',
-            ticketClass: 'One Way',
-            fromRoute: 'CA',
+            fromDate: '',
+            toDate: '',
+            ticketClass: 'Round Trip',
+            fromRoute: 'SFO',
             toRoute: 'MAA',
-            familyLocation: 'In KSA'
+            location: 'In KSA'
         }
     ]
 };
+
+export const ACTION_DETAILS = [
+    {
+        actionNo: 1,
+        createdBy: 'Noohu',
+        actionName: 'VR',
+        deptName: 'IMM',
+        respBy: 'Syed',
+        targetDate: '03/03/2020',
+        status: ''
+    }
+];
+
+export const ACTION_LIST = [
+    {
+        id: "VR",
+        desc: 'Visa Request'
+    },
+    {
+        id: "TKT",
+        desc: 'Ticket Booking'
+    },
+    {
+        id: 'HB',
+        desc: 'Hotel Booking'
+    },
+    {
+        id: 'TEST',
+        desc: 'Test Action'
+    }
+];
+
+
+export const DEPT_LIST = [
+    {
+        id: "HR",
+        desc: 'Human Resource'
+    },
+    {
+        id: "SOFT",
+        desc: 'Software Department'
+    },
+    {
+        id: 'NET',
+        desc: 'Networking'
+    },
+    {
+        id: 'IMM',
+        desc: 'Immigration'
+    }
+];

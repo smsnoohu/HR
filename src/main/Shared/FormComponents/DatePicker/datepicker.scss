@@ -1,0 +1,16 @@
+.react-datepicker-wrapper{
+    max-width:150px;
+    input{
+        background:#fff url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxnPjxnPjxwYXRoIGQ9Ik00MTYsMGgtNjR2NjRoNjRWMHogTTQ4MCwwaC0zMnY5NkgzMjBWMEgxOTJ2OTZINjRWMEgzMkMxNC4zMTIsMCwwLDE0LjMyOCwwLDMydjQ0OGMwLDE3LjY4OCwxNC4zMTIsMzIsMzIsMzJoNDQ4ICAgIGMxNy42ODgsMCwzMi0xNC4zMTIsMzItMzJWMzJDNTEyLDE0LjMyOCw0OTcuNjg4LDAsNDgwLDB6IE00NDgsNDQ4SDY0VjE2MGgzODRWNDQ4eiBNMTYwLDBIOTZ2NjRoNjRWMHogTTI4OCwyMjRoLTY0djY0aDY0VjIyNHogICAgIE0zODQsMjI0aC02NHY2NGg2NFYyMjR6IE0xOTIsMzIwaC02NHY2NGg2NFYzMjB6IE0xOTIsMjI0aC02NHY2NGg2NFYyMjR6IE0yODgsMzIwaC02NHY2NGg2NFYzMjB6IE0zODQsMzIwaC02NHY2NGg2NFYzMjB6Ii8+PC9nPjwvZz48L3N2Zz4=') no-repeat center right / 30px 20px;
+    }
+    
+    + .react-datepicker-wrapper{
+        padding-left:20px;
+    }
+}
+.react-datepicker__tab-loop{
+    display:inline-block;
+}
+.react-datepicker__close-icon{
+    display:none;
+}

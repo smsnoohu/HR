@@ -1,0 +1,123 @@
+export const CLEARANCE_FIELD = {
+    isBook: '',
+    isKeys: '',
+    isTools: '',
+    empOthers: [
+        // {
+        //     id: 'deptOthers_1',
+        //     label: 'ID Card',
+        //     isGiven: 'Yes'
+        // },
+        // {
+        //     id: 'deptOthers_2',
+        //     label: 'Other',
+        //     isGiven: 'No'
+        // }
+    ],
+    empUserComment: '',
+    isTelephone: '',
+    isVehicle: '',
+    isMobile: '',
+    isTicket: '',
+    isSimCard: '',
+    isAdminKeys: '',
+    isFurniture: '',
+    isUtilities: '',
+    isCourier: '',
+    isTelBill: '',
+    adminOthers:[],
+    adminUserComment: '',
+    isSalaryAdvance: '',
+    salaryAdvance: '',
+    isPayable: '',
+    payable: '',
+    isHouseAdvance: '',
+    houseAdvance: '',
+    isCashAdvance: '',
+    cashAdvance: '',
+    financeOthers: [
+        // {
+        //     id: 'financeOthers_1',
+        //     label: 'ID Card',
+        //     isGiven: 'Yes',
+        //     val: ''
+        // },
+        // {
+        //     id: 'financeOthers_2',
+        //     label: 'Other',
+        //     isGiven: 'No',
+        //     val: ''
+        // }
+    ],
+    financeUserComment: '',
+    isComputer: '',
+    isLaptop: '',
+    isPCAcc: '',
+    isCompBook: '',
+    isPassword: '',
+    isManual: '',
+    isSoftware: '',
+    isClearUID: '',
+    itOthers: [],
+    itUserComment: '',
+    isIqama: '',
+    isGovCards: '',
+    isPortPass: '',
+    govOthers: [],
+    govUserComment: '',
+    isID: '',
+    isCarSticker: '',
+    isRadio: '',
+    isIndKeys: '',
+    indusOthers: [],
+    indusUserComment: '',
+    isPPE: '',
+    isPlans: '',
+    isSafetyEquip: '',
+    isTesting: '',
+    isHealthTools: '',
+    healthOthers: [],
+    healthUserComment: '',
+    isCompanyTrainingID: '',
+    companyTrainingID: '',
+    isAmountDeduct: '',
+    amountDeduct: '',
+    trainingOthers: [],
+    trainingUserComment: '',
+    isUpdateRecruitment: '',
+    isUpdateOrgChart: '',
+    isMedicalCardCacel: '',
+    isGOSICancel: '',
+    isHRSalaryAdvance: '',
+    hrSalaryAdvance: '',
+    isHRHousingAdvance: '',
+    hrHousingAdvace: '',
+    hrOthers: [],
+    hrUserComment:''
+}
+
+export const CLEARANCE_APPROVAL = {
+    empManagerApprove: '',
+    empManagerApproveCmt: '',
+    adminManagerApprove: '',
+    adminManagerApproveCmt: '',
+    financeManagerApprove: '',
+    financeManagerApproveCmt: '',
+    itManagerApprove: '',
+    itManagerApproveCmt: '',
+    govManagerApprove: '',
+    govManagerApproveCmt: '',
+    industryManagerApprove: '',
+    industryManagerApproveCmt: '',
+    healthManagerApprove: '',
+    healthManagerApproveCmt: '',
+    trainingManagerApprove: '',
+    trainingManagerApproveCmt: '',
+    hrManagerApprove: '',
+    hrManagerApproveCmt: ''
+}
+
+export const ROLE = {
+    role: 'Manager',
+    dept: 'Admin'
+}

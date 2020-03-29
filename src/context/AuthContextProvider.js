@@ -12,8 +12,16 @@ const AuthContextProvider = props => {
         costCenter: 'Test',
         dept: 'HR Admin',
         password: '',
-        role: 'level1'
+        role: 'level1',
+        PrimaryContactNo: '9876543210',
+        typeOfWork: 'Contractor'
     });
+
+    const [userPref, setUserPref] = useState(
+        {
+            dateFormat: 'dd/MM/yyyy'
+        }
+    )
 
     const [isAunthetic, setIsAunthetic] = useState(false);
 
@@ -43,7 +51,8 @@ const AuthContextProvider = props => {
                 userObject,
                 setUserObject,
                 isAunthetic,
-                setIsAunthetic
+                setIsAunthetic,
+                userPref
             }}
         >
             {props.children}
