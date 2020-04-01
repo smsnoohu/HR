@@ -10,6 +10,7 @@ import ExpensesClaim from '../components/ExpensesClaim/ExpensesClaim';
 import ChildEducation from '../components/ChildEducation/ChildEducation';
 import OvertimeApproval from '../components/OvertimeApproval/OvertimeApproval';
 import WorkSchedule from '../components/WorkSchedule/WorkSchedule';
+import EmployeeAction from '../components/EmployeeAction/EmployeeAction';
 
 const ContainerNav = () => {
     return(
@@ -24,6 +25,7 @@ const ContainerNav = () => {
             <Route path="/ChildEducation" component={ChildEducation} />
             <Route path="/OvertimeApproval" component={OvertimeApproval} />
             <Route path="/WorkSchedule" component={WorkSchedule} />
+            <Route path="/EmployeeAction" component={EmployeeAction} />
         </Switch>
     );
 }

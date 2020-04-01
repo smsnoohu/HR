@@ -4,6 +4,7 @@ import Label from '../../main/Shared/FormComponents/Label';
 import SelectBox from '../../main/Shared/FormComponents/SelectBox';
 import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
 import { DateFormetter } from '../../utils/DateFormetter';
+import TextArea from '../../main/Shared/FormComponents/TextArea';
 import Button from '../../main/Shared/FormComponents/Button';
 import { APPROVAL_INFO, SHIFT_LIST } from './WorkScheduleConst';
 import Approval from '../../main/Shared/Approval/Approval';
@@ -22,12 +23,22 @@ const WorkSchedule = () => {
 
     const [dateError, setDateError] = useState(false);
 
-    const { fromDate, toDate, days } = approvalInfo;
+    const { fromDate, toDate, days, comment } = approvalInfo;
 
     const updateApprovalInfoDate = (name, date) => {
         const newState = {
             ...approvalInfo,
             [name]: date
+        }
+        setApprovalInfo(newState);
+    }
+
+    const updateApprovalInfo = e => {
+        const { name, value } = e.target;
+
+        const newState = {
+            ...approvalInfo,
+            [name]: value
         }
         setApprovalInfo(newState);
     }
@@ -67,7 +78,7 @@ const WorkSchedule = () => {
         setProcessStarted(false);
     }
 
-    const updateApprovalInfo = (e, index) => {
+    const updateApprovalInfoDays = (e, index) => {
         const { name, value } = e.target;
         let newState = [...days];
         newState[index][name] = value;
@@ -109,10 +120,13 @@ const WorkSchedule = () => {
                                 return(
                                     <div className="col-12 col-md-4 col-lg-3" key={day.id}>
                                         <Label htmlFor={day.id} value={`Date - ${day.day}`} />
-                                        <SelectBox id={day.id} name="shift" handleChange={(e) => updateApprovalInfo(e, index)} value={day.shift || ''} options={SHIFT_LIST} placeholder="Select Shift Type" />
+                                        <SelectBox id={day.id} name="shift" handleChange={(e) => updateApprovalInfoDays(e, index)} value={day.shift || ''} options={SHIFT_LIST} placeholder="Select Shift Type" />
                                     </div>
                                 )
                             })}
+                            <div className="col-12">
+                                <TextArea id="comment" name="comment" value={comment || ''} placeholder="Enter your comments" handleChange={updateApprovalInfo} />
+                            </div>
                         </div>
 
                         <div className="btn-container text-right">

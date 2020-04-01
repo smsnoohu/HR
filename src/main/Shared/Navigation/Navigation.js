@@ -39,6 +39,7 @@ const Navigation = () => {
                 <li><NavLink to="/ChildEducation" className="fa-university"><span>Childred Education</span></NavLink></li>
                 <li><NavLink to="/OvertimeApproval" className="fa-user-clock"><span>Overtime Approval</span></NavLink></li>
                 <li><NavLink to="/WorkSchedule" className="fa-clock"><span>Work Schedule</span></NavLink></li>
+                <li><NavLink to="/EmployeeAction" className="fa-user-cog"><span>Employee Action</span></NavLink></li>
             </ul>
         </aside>
     );
