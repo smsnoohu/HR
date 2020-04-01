@@ -6,7 +6,8 @@ export const APPROVAL_INFO = {
         //     day: '16/03/2020',
         //     shift: ''
         // }
-    ]
+    ],
+    comment: ''
 }
 
 export const SHIFT_LIST = [
