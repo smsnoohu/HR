@@ -1,7 +1,7 @@
 export const EMPLOYEE_INFO = [
     {
         empID: 'U222111',
-        empName: 'Mohamed Noohu',
+        "empName": 'Mohamed Noohu',
         hireDate: '01/02/2015',
         department: 'Information Technology',
         section: 'Section 5',
@@ -246,6 +246,8 @@ export const EMP_ACTION_INFO = {
     empName: '',
     empID: '',
     actionType: '',
+    effectiveFrom: '',
+    effcetiveTo: '',
     otherActionVal: '',
     actionValue: [
         // {

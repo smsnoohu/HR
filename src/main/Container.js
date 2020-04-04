@@ -20,6 +20,7 @@ const Container = () => {
                     <Footer />
                 </section>
             </div>
+            {clicked['page-loader'] && <div className="page-loader"></div>}
         </div>
     );
 }
