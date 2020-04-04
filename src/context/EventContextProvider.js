@@ -7,7 +7,10 @@ const EventContextProvider = props => {
 
     function toggleComponent(e, target){
         let component = target || e.target.dataset.target || '';
-        e.preventDefault();
+        if(e && e !== undefined){
+            e.preventDefault();
+        }
+        console.log('target: ', component, clicked);
         setClicked({ ...clicked, [component]: !clicked[component] });
     }
 

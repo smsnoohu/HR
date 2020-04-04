@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContextProvider';
+import { EventContext } from '../../context/EventContextProvider';
 import Label from '../../main/Shared/FormComponents/Label';
 import SelectBox from '../../main/Shared/FormComponents/SelectBox';
 import TextBox from '../../main/Shared/FormComponents/TextBox';
@@ -7,14 +8,18 @@ import RadioButton from '../../main/Shared/FormComponents/RadioButton';
 import CheckBox from '../../main/Shared/FormComponents/CheckBox';
 import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
 import { DateFormetter } from '../../utils/DateFormetter';
-import TextArea from '../../main/Shared/FormComponents/TextArea';
+import Modal from '../../main/Shared/Modal/Modal';
 import Button from '../../main/Shared/FormComponents/Button';
 import { EMPLOYEE_INFO, EMP_ACTION_INFO, ACTION_TYPE_LIST, DEPARTMENT_LIST, SECTION_LIST, JOB_TITLE_LIST, COST_CENTER_LIST, GRADE_LIST } from './EmployeeActionConst';
 import Approval from '../../main/Shared/Approval/Approval';
 import UserInfo from '../../main/Shared/UserInfo/UserInfo';
+import EmployeeListModalContent from './EmployeeListModalContent';
 
 const EmployeeAction = () => {
     console.log('Employee Action Page');
+
+    const { userPref } = useContext(AuthContext);
+    const { clicked, toggleComponent } = useContext(EventContext);
 
     const [empList, setEmpList] = useState([]);
 
@@ -28,7 +33,7 @@ const EmployeeAction = () => {
 
     const [finalState, setFinalState] = useState({});
 
-    const { empName, empID, actionType, otherActionVal } = empInfo;
+    const { empName, empID, actionType, otherActionVal, effectiveFrom } = empInfo;
 
     // const { hireDate, department, nationality, idNo } = empDetail;
 
@@ -47,19 +52,65 @@ const EmployeeAction = () => {
         setEmpList(empListArray);
     }
 
-    const updateEmpName = e => {
-        const { name, value } = e.target;
-        const empName = e.target[e.target.selectedIndex].text.split(' [')[0];
+    // const updateEmpName1 = e => {
+    //     const { name, value } = e.target;
+    //     const empName = e.target[e.target.selectedIndex].text.split(' [')[0];
+    //     const newState = {
+    //         ...empInfo,
+    //         actionType: '',
+    //         [name]: value,
+    //         empName: empName
+    //     }
+    //     console.log('new State: ', newState);
+    //     setEmpInfo(newState);
+        
+    //     const empObj = EMPLOYEE_INFO.filter(v => v.empID === value);
+
+    //     let empDetail = [];
+
+    //     if(newState.empID !== ''){
+    //         empDetail = [
+    //             {
+    //                 id: 'idNo',
+    //                 label: 'ID #',
+    //                 value: empObj[0].idNo
+    //             },
+    //             {
+    //                 id: 'dept',
+    //                 label: 'Department',
+    //                 value: empObj[0].department
+    //             },
+    //             {
+    //                 id: 'nationality',
+    //                 label: 'Nationality',
+    //                 value: empObj[0].nationality
+    //             },
+    //             {
+    //                 id: 'hireDate',
+    //                 label: 'Hire Date',
+    //                 value: empObj[0].hireDate
+    //             }
+    //         ]
+    //     }else{
+    //         empDetail = [];
+    //     }
+        
+    //     setEmpDetail(empDetail);
+
+    //     console.log('empInfo: ', empObj);
+
+    //     setSelectedEmp(empObj);
+    //     setFinalState({});
+    // }
+
+    const updateEmpName = (e, emp) => {
         const newState = {
             ...empInfo,
             actionType: '',
-            [name]: value,
-            empName: empName
+            empID: emp.empID,
+            empName: emp.empName
         }
-        console.log('new State: ', newState);
         setEmpInfo(newState);
-        
-        const empObj = EMPLOYEE_INFO.filter(v => v.empID === value);
 
         let empDetail = [];
 
@@ -68,22 +119,22 @@ const EmployeeAction = () => {
                 {
                     id: 'idNo',
                     label: 'ID #',
-                    value: empObj[0].idNo
+                    value: emp.idNo
                 },
                 {
                     id: 'dept',
                     label: 'Department',
-                    value: empObj[0].department
+                    value: emp.department
                 },
                 {
                     id: 'nationality',
                     label: 'Nationality',
-                    value: empObj[0].nationality
+                    value: emp.nationality
                 },
                 {
                     id: 'hireDate',
                     label: 'Hire Date',
-                    value: empObj[0].hireDate
+                    value: emp.hireDate
                 }
             ]
         }else{
@@ -92,9 +143,7 @@ const EmployeeAction = () => {
         
         setEmpDetail(empDetail);
 
-        console.log('empInfo: ', empObj);
-
-        setSelectedEmp(empObj);
+        setSelectedEmp(emp);
         setFinalState({});
     }
 
@@ -119,6 +168,16 @@ const EmployeeAction = () => {
         setActionVal([]);
         console.log('newState: ', newState);
         setFinalState({});
+    }
+
+    const updateActionDate = (name, date) => {
+        const newState = {
+            ...empInfo,
+            [name]: date
+        }
+        setEmpInfo(newState);
+
+        console.log('newState: ', newState);
     }
 
     const updateActionVal = e => {
@@ -164,9 +223,13 @@ const EmployeeAction = () => {
             <div className="form-container">
                 <div className="row">
                     <div className="col-12 col-md-4">
-                        <Label htmlFor="empList" value="Select Employee" />
-                        <SelectBox id="empList" name="empID" handleChange={updateEmpName} value={empID || ''} options={empList} placeholder="Select Employee" />
+                        <Label htmlFor="empList" value="Employee Name" />
+                        <a href="#" data-target="attachmentModal" onClick={toggleComponent} className="pick-link fa fa-search"></a>
+                        <p>{empInfo.empName}</p>
                     </div>
+                    {clicked["attachmentModal"] && (
+                        <Modal modalTitle="Select Employee Name" escapeClose="true" modalID="attachmentModal" modalSize="modal-xl" isClose="true" modalContent={<EmployeeListModalContent updateEmpName={updateEmpName} />} />
+                    )}
                     {empDetail && empDetail.length > 0 &&
                         <>
                             {empDetail.map((emp, index) => {
@@ -182,24 +245,25 @@ const EmployeeAction = () => {
                 </div>
                 
                 {empDetail && empDetail.length > 0 &&
-                    <div className="row">
-                        <div className="col-12 col-md-2">
-                            <Label htmlFor="actionType" value="Action Type" />
-                        </div>
-                        <div className="col-12 col-md-4">
-                            <SelectBox id="actionType" name="actionType" handleChange={updateActionType} value={actionType || ''} options={ACTION_TYPE_LIST} placeholder="Select Action Type" />
-                        </div>
-                        { actionType === 'other' &&
-                            <>
-                                <div className="col-12 col-md-2">
-                                    <Label htmlFor="otherActionVal" value="Please Specify" />
-                                </div>
+                    <>
+                        <hr />
+                        <div className="row">
+                            <div className="col-12 col-md-4">
+                                <Label htmlFor="actionType" value="Action Type" />
+                                <SelectBox id="actionType" name="actionType" handleChange={updateActionType} value={actionType || ''} options={ACTION_TYPE_LIST} placeholder="Select Action Type" />
+                            </div>
+                            { actionType === 'other' &&
                                 <div className="col-12 col-md-4">
+                                    <Label htmlFor="otherActionVal" value="Please Specify" />
                                     <TextBox id="otherActionVal" name="otherActionVal" value={otherActionVal || ''} placeholder="Please Specify Action Type" handleChange={updateActionType} />
                                 </div>
-                            </>
-                        }
-                    </div>
+                            }
+                            <div className="col-12 col-md-4">
+                                <Label htmlFor="effectiveFrom" value="Effective Date" />
+                                <Datepicker id="effectiveFrom" name="effectiveFrom" format={userPref.dateFormat} selected={effectiveFrom} value={effectiveFrom || ''} handleChange={(date) => updateActionDate('effectiveFrom', date)} disabled={!actionType || (actionType === 'other' && !otherActionVal)} />
+                            </div>
+                        </div>
+                    </>
                 }
 
                 {actionType !== '' &&
@@ -210,13 +274,13 @@ const EmployeeAction = () => {
                                 <>
                                     <div className="col-12 col-md-4 col-lg-3">
                                         <Label htmlFor="newDept" value="Department" />
-                                        <p><em>Current: </em> <strong>{selectedEmp[0].department}</strong></p>
+                                        <p><em>Current: </em> <strong>{selectedEmp.department}</strong></p>
                                         <p className="pt-5"><em><strong>Proposal</strong></em></p>
                                         <SelectBox id="newDept" name="newDept" handleChange={updateActionVal} value={newDept || ''} options={DEPARTMENT_LIST} placeholder="Select New Department" />
                                     </div>
                                     <div className="col-12 col-md-4 col-lg-3">
                                         <Label htmlFor="newSec" value="Section" />
-                                        <p><em>Current: </em> <strong>{selectedEmp[0].section}</strong></p>
+                                        <p><em>Current: </em> <strong>{selectedEmp.section}</strong></p>
                                         <p className="pt-5"><em><strong>Proposal</strong></em></p>
                                         <SelectBox id="newSec" name="newSec" handleChange={updateActionVal} value={newSec || ''} options={SECTION_LIST} placeholder="Select New Section" />
                                     </div>
@@ -226,7 +290,7 @@ const EmployeeAction = () => {
                             { actionType === 'promotion' &&
                                 <div className="col-12 col-md-4 col-lg-3">
                                     <Label htmlFor="newGrade" value="Grade" />
-                                    <p><em>Current: </em> <strong>{selectedEmp[0].grade}</strong></p>
+                                    <p><em>Current: </em> <strong>{selectedEmp.grade}</strong></p>
                                     <p className="pt-5"><em><strong>Proposal</strong></em></p>
                                     <SelectBox id="newGrade" name="newGrade" handleChange={updateActionVal} value={newGrade || ''} options={GRADE_LIST} placeholder="Select New Cost Center" />
                                 </div>
@@ -235,7 +299,7 @@ const EmployeeAction = () => {
                             { actionType === 'job' &&
                                 <div className="col-12 col-md-4 col-lg-3">
                                     <Label htmlFor="newJobTitle" value="Position No & Job Title" />
-                                    <p><em>Current: </em> <strong>{selectedEmp[0].jobTitle} & {selectedEmp[0].positionNo}</strong></p>
+                                    <p><em>Current: </em> <strong>{selectedEmp.jobTitle} & {selectedEmp[0].positionNo}</strong></p>
                                     <p className="pt-5"><em><strong>Proposal</strong></em></p>
                                     <SelectBox id="newJobTitle" name="newJobTitle" handleChange={updateActionVal} value={newJobTitle || ''} options={JOB_TITLE_LIST} placeholder="Select New Job Title" />
                                 </div>
@@ -244,7 +308,7 @@ const EmployeeAction = () => {
                             { actionType === 'cost' &&
                                 <div className="col-12 col-md-4 col-lg-3">
                                     <Label htmlFor="newCostCenter" value="Cost Center" />
-                                    <p><em>Current: </em> <strong>{selectedEmp[0].costCenter}</strong></p>
+                                    <p><em>Current: </em> <strong>{selectedEmp.costCenter}</strong></p>
                                     <p className="pt-5"><em><strong>Proposal</strong></em></p>
                                     <SelectBox id="newCostCenter" name="newCostCenter" handleChange={updateActionVal} value={newCostCenter || ''} options={COST_CENTER_LIST} placeholder="Select New Cost Center" />
                                 </div>
@@ -253,7 +317,7 @@ const EmployeeAction = () => {
                             { actionType === 'marriage' &&
                                 <div className="col-12 col-md-4 col-lg-3">
                                     <Label htmlFor="newMarriageStatus" value="Marriage Status" />
-                                    <p><em>Current: </em> <strong>{selectedEmp[0].marriageStatus}</strong></p>
+                                    <p><em>Current: </em> <strong>{selectedEmp.marriageStatus}</strong></p>
                                     <p className="pt-5"><em><strong>Proposal</strong></em></p>
                                     <RadioButton id="single" name="newMarriageStatus" value="Single" handleChange={updateActionVal} />
                                     <RadioButton id="married" name="newMarriageStatus" value="Married" handleChange={updateActionVal} />
