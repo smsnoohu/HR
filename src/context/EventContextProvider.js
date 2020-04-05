@@ -5,6 +5,8 @@ export const EventContext = createContext();
 const EventContextProvider = props => {
     const [clicked, setClicked] = useState({});
 
+    const [loader, setLoader] = useState(false);
+
     function toggleComponent(e, target){
         let component = target || e.target.dataset.target || '';
         if(e && e !== undefined){
@@ -14,11 +16,15 @@ const EventContextProvider = props => {
         setClicked({ ...clicked, [component]: !clicked[component] });
     }
 
+
+
     return(
         <EventContext.Provider
             value={{
                 clicked,
-                toggleComponent
+                toggleComponent,
+                loader,
+                setLoader
             }}
         >
             {props.children}

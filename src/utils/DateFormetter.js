@@ -39,3 +39,21 @@ export const MonthYearFormetter = date => {
     let shortDate = mm + '/' + yyyy;
     return shortDate;
 };
+
+
+export const GetFutureDate = (date, days) => {
+
+    // Convert 'days' to milliseconds
+    const millies = 1000 * 60 * 60 * 24 * days;
+
+    // Get the current date/time
+    const todaysDate = new Date(date);
+
+    // Get 'todaysDate' as Epoch Time, then add 'days' number of mSecs to it
+    const futureMillies = todaysDate.getTime() + millies;
+
+    // Use the Epoch time of the targeted future date to create
+    //   a new Date object, and then return it.
+    const targetedDate = new Date(futureMillies);
+    return targetedDate;
+}

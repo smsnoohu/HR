@@ -8,7 +8,7 @@ import ContainerNav from './ContainerNav';
 const Container = () => {
     console.log('Main Container');
 
-    const { clicked } = useContext(EventContext);
+    const { clicked, loader } = useContext(EventContext);
 
     return (
         <div id="wrapper" className={ clicked['left-nav'] ? 'nav-close' : ''}>
@@ -20,7 +20,7 @@ const Container = () => {
                     <Footer />
                 </section>
             </div>
-            {clicked['page-loader'] && <div className="page-loader"></div>}
+            {loader && <div className="page-loader"></div>}
         </div>
     );
 }

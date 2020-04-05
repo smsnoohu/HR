@@ -10,7 +10,7 @@ const Datepicker = ({ className, name, id, value, inline, maxDate, handleChange,
             className={`form-control${className ? ' ' + className : inline ? ' ' + 'date-picker-inline' : ''}`}
             name={name}
             id={id}
-            value={value}
+            value={(date)=>{setDate(date)}}
             selected={pickDate}
             dateFormat={format}
             onChange={(date)=>{setDate(date);handleChange(date);}}
