@@ -242,6 +242,29 @@ export const GRADE_LIST = [
     }
 ];
 
+export const ALLOWANCE_LIST = [
+    {
+        id: 'securityAllowance',
+        value: 'Security Allowance',
+        isSelected: ''
+    },
+    {
+        id: 'houseAllowance',
+        value: 'Housing Allowance',
+        isSelected: ''
+    },
+    {
+        id: 'transportAllowance',
+        value: 'Transportation Allowance',
+        isSelected: ''
+    },
+    {
+        id: 'shiftAllowance',
+        value: 'Shift Allowance',
+        isSelected: ''
+    }
+];
+
 export const EMP_ACTION_INFO = {
     empName: '',
     empID: '',
@@ -250,6 +273,26 @@ export const EMP_ACTION_INFO = {
     effcetiveTo: '',
     otherActionVal: '',
     actionValue: [
+        // {
+        //     salaryAllowances: [
+        //         {
+        //             id: 'securityAllowance',
+        //             value: 'Security Allowance'
+        //         },
+        //         {
+        //             id: 'houseAllowance',
+        //             value: 'Housing Allowance'
+        //         },
+        //         {
+        //             id: 'transportAllowance',
+        //             value: 'Transportation Allowance'
+        //         },
+        //         {
+        //             id: 'shiftAllowance',
+        //             value: 'Shift Allowance'
+        //         }
+        //     ]
+        // }
         // {
         //     newDept: '',
         //     newSec: '',

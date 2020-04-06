@@ -3,7 +3,7 @@ import { EventContext } from '../../context/EventContextProvider';
 import Label from '../../main/Shared/FormComponents/Label';
 import Button from '../../main/Shared/FormComponents/Button';
 import TextBox from '../../main/Shared/FormComponents/TextBox';
-import { EMPLOYEE_INFO } from './EmployeeActionConst';
+import { EMPLOYEE_INFO } from './EmployeeMonthlyEvaluationConst';
 
 const EmployeeListModalContent = ({ updateEmpName }) => {
     const { setLoader, toggleComponent } = useContext(EventContext);

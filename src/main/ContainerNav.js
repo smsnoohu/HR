@@ -11,6 +11,7 @@ import ChildEducation from '../components/ChildEducation/ChildEducation';
 import OvertimeApproval from '../components/OvertimeApproval/OvertimeApproval';
 import WorkSchedule from '../components/WorkSchedule/WorkSchedule';
 import EmployeeAction from '../components/EmployeeAction/EmployeeAction';
+import EmployeeMonthlyEvaluation from '../components/EmployeeEvaluation/EmployeeMonthlyEvaluation';
 
 const ContainerNav = () => {
     return(
@@ -26,6 +27,7 @@ const ContainerNav = () => {
             <Route path="/OvertimeApproval" component={OvertimeApproval} />
             <Route path="/WorkSchedule" component={WorkSchedule} />
             <Route path="/EmployeeAction" component={EmployeeAction} />
+            <Route path="/EmployeeMonthlyEvaluation" component={EmployeeMonthlyEvaluation} />
         </Switch>
     );
 }

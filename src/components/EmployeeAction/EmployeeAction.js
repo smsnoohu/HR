@@ -7,10 +7,9 @@ import TextBox from '../../main/Shared/FormComponents/TextBox';
 import RadioButton from '../../main/Shared/FormComponents/RadioButton';
 import CheckBox from '../../main/Shared/FormComponents/CheckBox';
 import Datepicker from '../../main/Shared/FormComponents/DatePicker/Datepicker';
-import { DateFormetter } from '../../utils/DateFormetter';
 import Modal from '../../main/Shared/Modal/Modal';
 import Button from '../../main/Shared/FormComponents/Button';
-import { EMPLOYEE_INFO, EMP_ACTION_INFO, ACTION_TYPE_LIST, DEPARTMENT_LIST, SECTION_LIST, JOB_TITLE_LIST, COST_CENTER_LIST, GRADE_LIST } from './EmployeeActionConst';
+import { EMP_ACTION_INFO, ACTION_TYPE_LIST, DEPARTMENT_LIST, SECTION_LIST, JOB_TITLE_LIST, COST_CENTER_LIST, GRADE_LIST, ALLOWANCE_LIST } from './EmployeeActionConst';
 import Approval from '../../main/Shared/Approval/Approval';
 import UserInfo from '../../main/Shared/UserInfo/UserInfo';
 import EmployeeListModalContent from './EmployeeListModalContent';
@@ -19,89 +18,28 @@ const EmployeeAction = () => {
     console.log('Employee Action Page');
 
     const { userPref } = useContext(AuthContext);
+
     const { clicked, toggleComponent } = useContext(EventContext);
 
-    const [empList, setEmpList] = useState([]);
+    // const [empList, setEmpList] = useState([]);
 
     const [empInfo, setEmpInfo] = useState(EMP_ACTION_INFO);
 
     const [empDetail, setEmpDetail] = useState({});
 
-    const [actionVal, setActionVal] = useState([]);
+    let [actionVal, setActionVal] = useState([]);
 
     const [selectedEmp, setSelectedEmp] = useState([]);
 
     const [finalState, setFinalState] = useState({});
+
+    const [allowance, setAllowance] = useState(ALLOWANCE_LIST)
 
     const { empName, empID, actionType, otherActionVal, effectiveFrom } = empInfo;
 
     // const { hireDate, department, nationality, idNo } = empDetail;
 
     const { newDept, newSec, newJobTitle, newPositionNo, newCostCenter, newMarriageStatus, newGrade, newSalary, securityAllowance, houseAllowance, transportAllowance, shiftAllowance } = actionVal;
-
-    const buildEmpList = () => {
-        console.log('EMPLOYEE_INFO: ', EMPLOYEE_INFO);
-        const empListArray = [];
-        EMPLOYEE_INFO.map((emp, index) => {
-            const empList = {
-                id: emp.empID,
-                desc: emp.empName + ' [' + emp.empID + ']'
-            };
-            empListArray.push(empList);
-        });
-        setEmpList(empListArray);
-    }
-
-    // const updateEmpName1 = e => {
-    //     const { name, value } = e.target;
-    //     const empName = e.target[e.target.selectedIndex].text.split(' [')[0];
-    //     const newState = {
-    //         ...empInfo,
-    //         actionType: '',
-    //         [name]: value,
-    //         empName: empName
-    //     }
-    //     console.log('new State: ', newState);
-    //     setEmpInfo(newState);
-        
-    //     const empObj = EMPLOYEE_INFO.filter(v => v.empID === value);
-
-    //     let empDetail = [];
-
-    //     if(newState.empID !== ''){
-    //         empDetail = [
-    //             {
-    //                 id: 'idNo',
-    //                 label: 'ID #',
-    //                 value: empObj[0].idNo
-    //             },
-    //             {
-    //                 id: 'dept',
-    //                 label: 'Department',
-    //                 value: empObj[0].department
-    //             },
-    //             {
-    //                 id: 'nationality',
-    //                 label: 'Nationality',
-    //                 value: empObj[0].nationality
-    //             },
-    //             {
-    //                 id: 'hireDate',
-    //                 label: 'Hire Date',
-    //                 value: empObj[0].hireDate
-    //             }
-    //         ]
-    //     }else{
-    //         empDetail = [];
-    //     }
-        
-    //     setEmpDetail(empDetail);
-
-    //     console.log('empInfo: ', empObj);
-
-    //     setSelectedEmp(empObj);
-    //     setFinalState({});
-    // }
 
     const updateEmpName = (e, emp) => {
         const newState = {
@@ -166,8 +104,17 @@ const EmployeeAction = () => {
         }
         setEmpInfo(newState);
         setActionVal([]);
-        console.log('newState: ', newState);
+        console.log('newState123: ', newState, allowance);
         setFinalState({});
+        let resetAllowance = [];
+        allowance.map((a) => {
+            let ra = {
+                ...a,
+                isSelected: ''
+            }
+            resetAllowance.push(ra);
+        });
+        setAllowance(resetAllowance);
     }
 
     const updateActionDate = (name, date) => {
@@ -196,22 +143,43 @@ const EmployeeAction = () => {
         setFinalState({});
     }
 
+    const updateSalaryAction = (e, index) => {
+        const { name, type, checked, value } = e.target;
+        let val;
+        type === 'checkbox' ? (val = checked ? 'Yes' : 'No') : val = value;
+
+        const newState = [...allowance];
+        newState[index][name] = val
+
+        console.log('actionVal: ', name, val, newState);
+
+        setAllowance(newState);
+        setFinalState({});
+    }
+
     const updateFinal = e => {
         e.preventDefault();
         console.log('empInfo: ', empInfo);
         console.log('actionVal: ', actionVal);
+        console.log('allowance: ', allowance);
 
+        const salaryVal = {
+            salaryAllowances: allowance
+        }
+        if(empInfo.actionType === 'salary'){
+            actionVal = [...actionVal, salaryVal]
+        }
         const newState = {
             ...empInfo,
             actionValue: [actionVal]
         }
 
-        console.log('newState: ', newState);
+        console.log('newState: ', salaryVal, newState);
         setFinalState(newState)
     }
 
     useEffect(() => {
-        buildEmpList();
+        // buildEmpList();
     }, []);
 
     return(
@@ -326,18 +294,13 @@ const EmployeeAction = () => {
                         </div>
                         { actionType === 'salary' &&
                             <div className="row">
-                                <div className="col-12 col-md-4 col-lg-3">
-                                    <CheckBox id="securityAllowance" name="securityAllowance" value="Yes" label="Security Allowance" handleChange={updateActionVal} checked={securityAllowance === 'Yes' ? true : false} />
-                                </div>
-                                <div className="col-12 col-md-4 col-lg-3">
-                                    <CheckBox id="houseAllowance" name="houseAllowance" value="Yes" label="Housing Allowance" handleChange={updateActionVal} checked={houseAllowance === 'Yes' ? true : false} />
-                                </div>
-                                <div className="col-12 col-md-4 col-lg-3">
-                                    <CheckBox id="transportAllowance" name="transportAllowance" value="Yes" label="Transportation Allowance" handleChange={updateActionVal} checked={transportAllowance === 'Yes' ? true : false} />
-                                </div>
-                                <div className="col-12 col-md-4 col-lg-3">
-                                    <CheckBox id="shiftAllowance" name="shiftAllowance" value="Yes" label="Shift Allowance" handleChange={updateActionVal} checked={shiftAllowance === 'Yes' ? true : false} />
-                                </div>
+                                { allowance.map((allowance, index) => {
+                                    return(
+                                        <div className="col-12 col-md-4 col-lg-3" key={allowance.id}>
+                                            <CheckBox id={allowance.id} name="isSelected" value="Yes" label={allowance.value} handleChange={(e) => updateSalaryAction(e, index)} checked={allowance.isSelected === 'Yes' ? true : false} />{allowance.id}
+                                        </div>
+                                    )
+                                })}
                             </div>
                         }
                         <div className="btn-container text-right">
