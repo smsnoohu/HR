@@ -16,7 +16,7 @@ import { EVALUATION_INFO, RATING } from './EmployeeMonthlyEvaluationConst';
 import { GetFutureDate, DateFormetter } from '../../utils/DateFormetter';
 
 
-const EmployeeMonthlyEvaluation = () => {
+const EmployeeQuaterlyEvaluation = () => {
 
     const { userPref } = useContext(AuthContext);
     
@@ -90,7 +90,7 @@ const EmployeeMonthlyEvaluation = () => {
 
         console.log('newState: ', newState);
 
-        console.log('GetFutureDate: ', GetFutureDate(date, 30));
+        console.log('GetFutureDate: ', GetFutureDate(date, 90));
     }
 
     const updateScore = (e, index) => {
@@ -211,4 +211,4 @@ const EmployeeMonthlyEvaluation = () => {
     )
 }
 
-export default EmployeeMonthlyEvaluation;
+export default EmployeeQuaterlyEvaluation;

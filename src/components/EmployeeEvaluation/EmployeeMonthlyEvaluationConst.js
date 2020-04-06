@@ -76,9 +76,49 @@ export const EMPLOYEE_INFO = [
     }
 ];
 
+export const RATING = [
+    {
+        id: 'rate_1',
+        desc: 'Attendance',
+        score: '',
+        comment: ''
+    },
+    {
+        id: 'rate_2',
+        desc: 'Knowledge Gained',
+        score: '',
+        comment: ''
+    },
+    {
+        id: 'rate_3',
+        desc: 'Application Capablity',
+        score: '',
+        comment: ''
+    },
+    {
+        id: 'rate_4',
+        desc: 'Ability to leard and accquire experience',
+        score: '',
+        comment: ''
+    },
+    {
+        id: 'rate_5',
+        desc: 'Disipline',
+        score: '',
+        comment: ''
+    },
+    {
+        id: 'rate_6',
+        desc: 'Cooperation with collegues',
+        score: '',
+        comment: ''
+    }
+];
+
 export const EVALUATION_INFO = {
     empName: '',
     empID: '',
     evaluationFrom: '',
-    evaluationTo: ''
+    evaluationTo: '',
+    rating: []
 }

@@ -1,0 +1,21 @@
+.rating-list{
+    list-style:none;
+    @include flex();
+    margin:20px 0;
+    li{
+        flex:1;
+        font-weight:600;
+        background-color:$even-bg;
+        margin-right:10px;
+        &:last-child{
+            margin-right:0;
+        }
+        span{
+            background-color:$secondary;
+            padding:5px 12px;
+            display:inline-block;
+            margin-right:10px;
+            color:$white;
+        }
+    }
+}
